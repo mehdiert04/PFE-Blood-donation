@@ -1,0 +1,235 @@
+.hero {
+    position: relative;
+    padding-top: 8rem;
+    /* Navbar height compensation */
+    padding-bottom: 4rem;
+    overflow: hidden;
+    min-height: 90vh;
+    /* Fill most of screen */
+    display: flex;
+    align-items: center;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+@media (min-width: 1024px) {
+    .container {
+        grid-template-columns: 1.2fr 1fr;
+        /* Content slightly wider */
+        gap: 4rem;
+    }
+}
+
+/* Content Side */
+.content {
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: rgba(229, 57, 53, 0.1);
+    color: var(--primary);
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    width: fit-content;
+}
+
+.badgeIcon {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.7;
+        transform: scale(1.2);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.title {
+    font-size: 2.5rem;
+    /* Mobile */
+    line-height: 1.1;
+    color: var(--text-main);
+    /* Default text color, headers usually dark */
+}
+
+@media (min-width: 768px) {
+    .title {
+        font-size: 3.5rem;
+    }
+}
+
+.highlight {
+    color: var(--primary);
+    position: relative;
+    white-space: nowrap;
+}
+
+.highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 0.2em;
+    left: 0;
+    width: 100%;
+    height: 0.2em;
+    background-color: rgba(229, 57, 53, 0.2);
+    z-index: -1;
+    transform: rotate(-1deg);
+}
+
+.description {
+    font-size: 1.125rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    line-height: 1.7;
+}
+
+.ctaGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+@media (min-width: 640px) {
+    .ctaGroup {
+        flex-direction: row;
+    }
+}
+
+/* Stats */
+.stats {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-light);
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+}
+
+.statValue {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1;
+}
+
+.statLabel {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+}
+
+.divider {
+    width: 1px;
+    height: 40px;
+    background-color: var(--border-light);
+}
+
+/* Carousel Side */
+.carouselContainer {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/5;
+    /* Portrait-ish ratio */
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+}
+
+@media (min-width: 1024px) {
+    .carouselContainer {
+        aspect-ratio: 1/1;
+        /* Square on desktop */
+        max-width: 500px;
+        margin-left: auto;
+    }
+}
+
+.carouselWrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 1;
+}
+
+.activeSlide {
+    opacity: 1;
+    z-index: 2;
+}
+
+.slideImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
+}
+
+.dots {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.75rem;
+    z-index: 10;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.activeDot {
+    background-color: white;
+    transform: scale(1.2);
+    width: 24px;
+    border-radius: 12px;
+}

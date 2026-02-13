@@ -1,0 +1,170 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+    background-color: transparent;
+    /* Start transparent */
+}
+
+/* Scrolled state */
+.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    padding: 0.75rem 0;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.icon {
+    color: var(--primary);
+}
+
+/* Desktop Menu */
+.desktopMenu {
+    display: none;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .desktopMenu {
+        display: flex;
+    }
+}
+
+.navLink {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+    position: relative;
+}
+
+.navLink:hover {
+    color: var(--primary);
+}
+
+.active {
+    color: var(--primary);
+}
+
+.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary);
+    border-radius: 2px;
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.themeToggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border-light);
+    background-color: transparent;
+    color: var(--text-main);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.themeToggle:hover {
+    background-color: var(--bg-input);
+    color: var(--primary);
+}
+
+.loginButtonWrapper {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .loginButtonWrapper {
+        display: block;
+    }
+}
+
+.mobileMenuBtn {
+    display: flex;
+    /* Always show on mobile? Actually hide on desktop */
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-main);
+    background: none;
+    border: none;
+}
+
+@media (min-width: 768px) {
+    .mobileMenuBtn {
+        display: none;
+    }
+}
+
+/* Mobile Menu Overlay */
+.mobileMenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-card);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid var(--border-light);
+}
+
+.mobileLink {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-main);
+    text-decoration: none;
+}
+
+.mobileActions {
+    margin-top: 1rem;
+}
+
+/* Dark Mode Overrides for Transparency/Blur */
+:global([data-theme='dark']) .scrolled {
+    background-color: rgba(30, 30, 30, 0.95);
+    /* Dark background */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
