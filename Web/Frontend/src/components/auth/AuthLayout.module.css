@@ -1,0 +1,96 @@
+.container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+@media (min-width: 1024px) {
+    .container {
+        height: 100vh;
+        overflow: hidden;
+    }
+}
+
+.brandingSection {
+    display: none;
+    position: relative;
+    flex: 1;
+    background-image: url('https://plus.unsplash.com/premium_photo-1681488262364-8aeb1b6aacd0?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+}
+
+@media (min-width: 1024px) {
+    .brandingSection {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        height: 100%;
+    }
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(211, 47, 47, 0.95), rgba(211, 47, 47, 0.4));
+}
+
+.brandContent {
+    position: relative;
+    padding: 4rem;
+    z-index: 10;
+    color: white;
+}
+
+.logo {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+}
+
+.quote {
+    font-size: 1.5rem;
+    font-weight: 500;
+    max-width: 500px;
+    line-height: 1.4;
+}
+
+.formSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Center vertically if form is short */
+    align-items: center;
+    padding: 2rem;
+    background-color: var(--bg-card);
+    overflow-y: auto;
+    /* Scrollable form */
+}
+
+/* Ensure formWrapper doesn't get squashed */
+.formWrapper {
+    width: 100%;
+    max-width: 520px;
+    margin: auto 0;
+    /* Center in scroll container */
+    padding: 2rem 0;
+}
+
+.header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}

@@ -1,0 +1,77 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-main);
+    /* Optional: Make label slight larger or different color if requested */
+}
+
+.inputContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-input);
+    /* Gris Clair #FAFAFA */
+    transition: all 0.2s ease;
+    overflow: hidden;
+    /* Ensure rounded corners clip content */
+}
+
+.inputContainer:focus-within {
+    border: 2px solid var(--border-focus);
+    /* Focus: 2px solid #E53935 */
+    background-color: #FFFFFF;
+    /* Optional: Lighten on focus for clarity */
+}
+
+.hasError {
+    border-color: #EF5350;
+    /* Softer red for error state contrast */
+    box-shadow: 0 0 0 2px rgba(239, 83, 80, 0.1);
+}
+
+.inputField {
+    width: 100%;
+    padding: 16px 12px;
+    /* Padding: 16px 12px */
+    padding-left: 48px;
+    /* Extra padding for icon */
+    font-size: 1rem;
+    border: none;
+    background: transparent;
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+.noIcon {
+    padding-left: 12px;
+    /* Default left padding if no icon */
+}
+
+.iconStyles {
+    position: absolute;
+    left: 16px;
+    /* Adjusted icon position */
+    color: var(--primary);
+    /* Icon Color: Red inside inputs */
+    pointer-events: none;
+    width: 20px;
+    height: 20px;
+}
+
+.errorMessage {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #D32F2F;
+    margin-top: -0.25rem;
+    padding-left: 0.25rem;
+}

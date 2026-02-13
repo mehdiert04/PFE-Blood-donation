@@ -1,0 +1,39 @@
+:root {
+  /* BloodLink Style Guide Colors */
+  --primary: #E53935;
+  /* Rouge Principal */
+  --primary-rgb: 229, 57, 53;
+
+  --bg-page: #FFFFFF;
+  /* Blanc */
+  --bg-gradient-start: #FFFFFF;
+  --bg-gradient-end: #FFEBEE;
+  /* Rose Clair */
+
+  --bg-input: #FAFAFA;
+  /* Gris Clair */
+  --bg-card: #FFFFFF;
+
+  --text-main: #616161;
+  /* Gris foncé - Texte */
+  --text-heading: #E53935;
+  /* Rouge - Titres */
+  --text-light: #FFFFFF;
+
+  --border-light: rgba(229, 57, 53, 0.5);
+  /* 1px solid rgba(229, 57, 53, 0.5) */
+  --border-focus: #E53935;
+
+  --shadow-button: 0 5px 10px rgba(229, 57, 53, 0.3);
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.05);
+
+  /* Spacing & Layout */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  /* Standard for inputs */
+  --radius-lg: 16px;
+  /* Standard for buttons */
+
+  /* Transitions */
+  --transition: 200ms ease-in-out;
+}
