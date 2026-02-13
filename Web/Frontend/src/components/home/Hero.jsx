@@ -2,21 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight, CircleDot } from 'lucide-react';
 import Button from '../common/Button';
 import styles from './Hero.module.css';
+import image1 from '../../assets/1.jfif';
+import image2 from '../../assets/2.jfif';
+import image3 from '../../assets/3.jfif';
 
 const slides = [
     {
         id: 1,
-        image: 'https://images.unsplash.com/photo-1615461168478-f62f3f9f9d7c?q=80&w=2674&auto=format&fit=crop',
+        image: image1,
         alt: 'Don de sang - Sauver des vies'
     },
     {
         id: 2,
-        image: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=2670&auto=format&fit=crop',
+        image: image2,
         alt: 'Laboratoire et Recherche'
     },
     {
         id: 3,
-        image: 'https://images.unsplash.com/photo-1524721696987-b9527df9e312?q=80&w=2669&auto=format&fit=crop',
+        image: image3,
         alt: 'Communauté de donneurs'
     }
 ];
@@ -24,11 +27,11 @@ const slides = [
 const Hero = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
 
-    // Auto-advance slides every 3 seconds
+    // Auto-advance slides every 5 seconds
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % slides.length);
-        }, 3000);
+        }, 5000);
 
         return () => clearInterval(interval);
     }, []);
