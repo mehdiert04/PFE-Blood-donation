@@ -64,22 +64,6 @@
     padding-bottom: 0.5rem;
 }
 
-.fileInputWrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.fileInputWrapper label {
-    font-size: 0.875rem;
-    font-weight: 600;
-}
-
-.fileInput {
-    margin-top: 0.25rem;
-    font-size: 0.875rem;
-}
-
 .hint {
     font-size: 0.75rem;
     color: var(--text-muted);

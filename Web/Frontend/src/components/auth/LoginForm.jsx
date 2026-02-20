@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Mail, Lock, AlertCircle } from 'lucide-react';
 import { loginSchema } from '../../lib/schemas';
@@ -10,6 +10,7 @@ import styles from './AuthForms.module.css';
 
 const LoginForm = () => {
     const { onSwitchToRegister } = useOutletContext();
+    const navigate = useNavigate();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [loginError, setLoginError] = useState(null);
 
@@ -23,7 +24,6 @@ const LoginForm = () => {
         try {
             console.log('Logging in:', data);
             await new Promise(resolve => setTimeout(resolve, 1500));
-            // Handle successful login (redirect, context update)
             alert("Connexion réussie (Simulation)");
         } catch (err) {
             setLoginError("Email ou mot de passe incorrect.");
@@ -61,7 +61,13 @@ const LoginForm = () => {
                 )}
 
                 <div className={styles.forgotPassword}>
-                    <button type="button" className={styles.linkButton}>Mot de passe oublié?</button>
+                    <button
+                        type="button"
+                        className={styles.linkButton}
+                        onClick={() => navigate('/auth/forgot-password')}
+                    >
+                        Mot de passe oublié ?
+                    </button>
                 </div>
 
                 <Button type="submit" fullWidth isLoading={isSubmitting} size="lg">

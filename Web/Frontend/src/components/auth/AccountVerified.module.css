@@ -1,0 +1,173 @@
+.page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fff 0%, #FFEBEE 60%, #fff 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 16px 48px rgba(229, 57, 53, 0.1), 0 4px 16px rgba(0, 0, 0, 0.06);
+    padding: 3rem 2.5rem;
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: fadeSlideUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 2.5rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Icon Area */
+.iconWrapper {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    transition: all 0.3s;
+}
+
+.loading {
+    color: var(--primary);
+    background-color: rgba(229, 57, 53, 0.08);
+}
+
+.success {
+    color: #2E7D32;
+    background-color: rgba(46, 125, 50, 0.09);
+}
+
+.error {
+    color: var(--primary);
+    background-color: rgba(229, 57, 53, 0.08);
+}
+
+.spinner {
+    animation: spinAnim 1s linear infinite;
+}
+
+@keyframes spinAnim {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Success icon pulse */
+.success .icon {
+    animation: iconPop 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes iconPop {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Text */
+.title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Override title color via the status class */
+.title.success {
+    color: #2E7D32;
+}
+
+.title.loading,
+.title.error {
+    color: var(--primary);
+}
+
+.description {
+    font-size: 1rem;
+    color: #757575;
+    line-height: 1.7;
+    max-width: 380px;
+    margin-bottom: 2.5rem;
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.homeLink {
+    background: none;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    color: #9E9E9E;
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 0;
+}
+
+.homeLink:hover {
+    color: var(--primary);
+}
+
+/* Decorative bottom dots */
+.decorDots {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 2.5rem;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(229, 57, 53, 0.2);
+}
+
+.dot:nth-child(2) {
+    background-color: rgba(229, 57, 53, 0.5);
+    width: 20px;
+    border-radius: 12px;
+}
