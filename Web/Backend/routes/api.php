@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ForgotPasswordController;
+use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\HopitalController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/register/donneur', [AuthController::class, 'registerDonneur']);
@@ -23,4 +25,6 @@ Route::post('/email/resend', [AuthController::class, 'resendVerificationEmail'])
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/users/me', [UserController::class, 'me']);
+    Route::get('/hospitals', [HopitalController::class, 'index']);
 });
