@@ -116,4 +116,38 @@ class RendezVousController extends Controller
             'data'    => $rendezVous,
         ]);
     }
+
+    /**
+     * GET /api/appointments/next
+     *
+     * Return the single closest future appointment for the authenticated donor.
+     */
+    public function next(Request $request)
+    {
+        $user = $request->user();
+
+        if ($user->role !== 'donneur') {
+            return response()->json([
+                'success' => false,
+                'message' => 'Accès réservé aux donneurs.',
+                'data'    => null,
+            ], 403);
+        }
+
+        $nextRdv = RendezVous::where('donneur_id', $user->id)
+            ->whereIn('statut', ['En attente', 'Confirmé'])
+            ->where('date_rdv', '>=', Carbon::today())
+            ->with('hopital.hopitalProfile')
+            ->orderBy('date_rdv')
+            ->orderBy('heure_rdv')
+            ->first();
+
+        return response()->json([
+            'success' => true,
+            'message' => $nextRdv
+                ? 'Prochain rendez-vous récupéré avec succès.'
+                : 'Aucun rendez-vous à venir.',
+            'data'    => $nextRdv,
+        ]);
+    }
 }

@@ -5,6 +5,8 @@ use App\Http\Controllers\Api\ForgotPasswordController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\HopitalController;
 use App\Http\Controllers\Api\RendezVousController;
+use App\Http\Controllers\Api\StatistiquesController;
+use App\Http\Controllers\Api\DonationHistoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/register/donneur', [AuthController::class, 'registerDonneur']);
@@ -29,7 +31,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/users/me', [UserController::class, 'me']);
     Route::get('/hospitals', [HopitalController::class, 'index']);
 
-    // Rendez-vous (Appointments)
-    Route::get('/rendez-vous', [RendezVousController::class, 'index']);
-    Route::post('/rendez-vous', [RendezVousController::class, 'store']);
+    // Donor Module – English routes
+    Route::get('/stats', [StatistiquesController::class, 'index']);
+    Route::get('/donations', [DonationHistoryController::class, 'index']);
+    Route::get('/appointments/next', [RendezVousController::class, 'next']);
+    Route::get('/appointments', [RendezVousController::class, 'index']);
+    Route::post('/appointments', [RendezVousController::class, 'store']);
 });
