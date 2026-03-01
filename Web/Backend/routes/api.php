@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ForgotPasswordController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\HopitalController;
+use App\Http\Controllers\Api\RendezVousController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/register/donneur', [AuthController::class, 'registerDonneur']);
@@ -27,4 +28,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/users/me', [UserController::class, 'me']);
     Route::get('/hospitals', [HopitalController::class, 'index']);
+
+    // Rendez-vous (Appointments)
+    Route::get('/rendez-vous', [RendezVousController::class, 'index']);
+    Route::post('/rendez-vous', [RendezVousController::class, 'store']);
 });

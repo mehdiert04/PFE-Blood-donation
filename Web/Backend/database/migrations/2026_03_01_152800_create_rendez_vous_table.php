@@ -1,0 +1,33 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('rendez_vous', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('donneur_id')->constrained('users');
+            $table->foreignId('hopital_id')->constrained('users');
+            $table->date('date_rdv');
+            $table->time('heure_rdv');
+            $table->enum('type_don', ['Sang Total', 'Plasma', 'Plaquettes']);
+            $table->enum('statut', ['En attente', 'Confirmé', 'Terminé', 'Annulé'])->default('En attente');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('rendez_vous');
+    }
+};
