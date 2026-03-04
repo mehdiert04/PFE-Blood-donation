@@ -7,6 +7,7 @@ import { z } from 'zod';
 import Input from '../common/Input';
 import Button from '../common/Button';
 import styles from './ForgotPassword.module.css';
+import { forgotPassword, resendVerificationEmail } from '../../api/auth';
 
 const emailSchema = z.object({
     email: z.string().email('Veuillez entrer un email valide'),
@@ -26,7 +27,7 @@ const ForgotPassword = () => {
     const onSubmit = async (data) => {
         setIsSubmitting(true);
         // Simulate API call — replace with real endpoint
-        await new Promise(resolve => setTimeout(resolve, 1800));
+        await forgotPassword(data);
         setSubmittedEmail(data.email);
         setSent(true);
         setIsSubmitting(false);
@@ -45,7 +46,7 @@ const ForgotPassword = () => {
 
     const handleResend = async () => {
         setIsSubmitting(true);
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        await resendVerificationEmail(data);
         setIsSubmitting(false);
         startCountdown();
     };

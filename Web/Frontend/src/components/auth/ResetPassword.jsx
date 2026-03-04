@@ -8,6 +8,7 @@ import Input from '../common/Input';
 import Button from '../common/Button';
 import styles from './ResetPassword.module.css';
 
+
 const resetSchema = z.object({
     password: z.string()
         .min(8, 'Au moins 8 caractères')

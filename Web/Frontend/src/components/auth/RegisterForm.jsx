@@ -8,6 +8,7 @@ import Button from '../common/Button';
 import Input from '../common/Input';
 import Select from '../common/Select';
 import styles from './AuthForms.module.css';
+import { registerDonneur, registerReceveur } from '../../api/auth';
 
 const ROLES = [
     { id: 'donneur', label: 'Donneur', icon: User },
@@ -33,7 +34,7 @@ const DonneurForm = ({ onSubmit, onSwitchToLogin, submitError }) => {
     const handleFormSubmit = async (data) => {
         setIsSubmitting(true);
         try {
-            await onSubmit(data);
+            await registerDonneur(data);
         } finally {
             setIsSubmitting(false);
         }
@@ -88,7 +89,7 @@ const ReceveurForm = ({ onSubmit, onSwitchToLogin, submitError }) => {
     const handleFormSubmit = async (data) => {
         setIsSubmitting(true);
         try {
-            await onSubmit(data);
+            await registerReceveur(data);
         } finally {
             setIsSubmitting(false);
         }

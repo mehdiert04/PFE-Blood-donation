@@ -3,6 +3,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Mail, RefreshCw, ArrowLeft, CheckCircle2, HeartPulse } from 'lucide-react';
 import Button from '../common/Button';
 import styles from './VerifyEmail.module.css';
+import { resendVerificationEmail } from '../../api/auth';
+import { useNotification } from '../../contexts/NotificationContext';
 
 const VerifyEmail = () => {
     const navigate = useNavigate();
@@ -17,7 +19,7 @@ const VerifyEmail = () => {
     const handleResend = async () => {
         setResendStatus('loading');
         // Simulate API call to resend verification email
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        await resendVerificationEmail(email);
         setResendStatus('sent');
 
         // Countdown 60s before allowing another resend

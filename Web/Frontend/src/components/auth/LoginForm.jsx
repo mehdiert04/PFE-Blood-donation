@@ -7,6 +7,7 @@ import { loginSchema } from '../../lib/schemas';
 import Button from '../common/Button';
 import Input from '../common/Input';
 import styles from './AuthForms.module.css';
+import { login } from '../../api/auth';
 
 const LoginForm = () => {
     const { onSwitchToRegister } = useOutletContext();
@@ -22,9 +23,10 @@ const LoginForm = () => {
         setIsSubmitting(true);
         setLoginError(null);
         try {
-            console.log('Logging in:', data);
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            alert("Connexion réussie (Simulation)");
+            const response = await login(data);
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('user', JSON.stringify(response.data.user));
+            navigate('/dashboard');
         } catch (err) {
             setLoginError("Email ou mot de passe incorrect.");
         } finally {
