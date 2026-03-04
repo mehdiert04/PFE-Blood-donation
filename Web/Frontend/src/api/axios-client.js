@@ -20,7 +20,8 @@ axiosClient.interceptors.response.use(
     const { response } = error;
     if (response && response.status === 401) {
       localStorage.removeItem('ACCESS_TOKEN');
-      // window.location.href = "/auth/login"; // Optional: auto-redirect on unauthorized
+      localStorage.removeItem('USER');
+      window.location.href = "/auth/login";
     }
     throw error;
   }

@@ -14,6 +14,7 @@ import BloodDemandsList from './pages/receveur/DemandsList';
 import CreateBloodDemand from './pages/receveur/CreateDemand';
 import BloodDemandDetails from './pages/receveur/DemandDetails';
 import ReceveurLayout from './pages/receveur/ReceveurLayout';
+import ProtectedRoute from './components/auth/ProtectedRoute';
 
 // Layout wrapper if needed later (e.g., for header/footer on other pages)
 const MainLayout = () => {
@@ -44,14 +45,19 @@ const routes = [
         ]
       },
       {
-        path: 'receveur',
-        element: <ReceveurLayout />,
+        element: <ProtectedRoute allowedRoles={['receveur']} />,
         children: [
-          { path: 'dashboard', element: <ReceveurDashboard /> },
-          { path: 'demands', element: <BloodDemandsList /> },
-          { path: 'demands/create', element: <CreateBloodDemand /> },
-          { path: 'demands/:id', element: <BloodDemandDetails /> },
-          { path: '', element: <Navigate to="dashboard" replace /> }
+          {
+            path: 'receveur',
+            element: <ReceveurLayout />,
+            children: [
+              { path: 'dashboard', element: <ReceveurDashboard /> },
+              { path: 'demands', element: <BloodDemandsList /> },
+              { path: 'demands/create', element: <CreateBloodDemand /> },
+              { path: 'demands/:id', element: <BloodDemandDetails /> },
+              { path: '', element: <Navigate to="dashboard" replace /> }
+            ]
+          }
         ]
       },
       // Fallback for 404
