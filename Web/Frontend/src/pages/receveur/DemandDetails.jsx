@@ -13,7 +13,9 @@ const DemandDetails = () => {
         const fetchDemand = async () => {
             try {
                 const response = await getBloodDemand(id);
-                setDemand(response.data);
+                if (response.data && response.data.data) {
+                    setDemand(response.data.data);
+                }
             } catch (error) {
                 console.error("Error fetching demand details:", error);
                 alert("Could not load demand details.");

@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
     const [stats, setStats] = useState({
-        total: 0,
-        pending: 0,
-        fulfilled: 0,
-        cancelled: 0
+        total_demands: 0,
+        pending_demands: 0,
+        fulfilled_demands: 0,
+        cancelled_demands: 0
     });
     const [loading, setLoading] = useState(true);
 
@@ -16,7 +16,9 @@ const Dashboard = () => {
         const fetchStats = async () => {
             try {
                 const response = await getReceveurStats();
-                setStats(response.data);
+                if (response.data && response.data.data) {
+                    setStats(response.data.data);
+                }
             } catch (error) {
                 console.error("Error fetching stats:", error);
             } finally {
@@ -40,19 +42,19 @@ const Dashboard = () => {
             <div className={styles.statsGrid}>
                 <div className={`${styles.statCard} ${styles.total}`}>
                     <h3>Total Demands</h3>
-                    <div className={styles.statValue}>{stats.total}</div>
+                    <div className={styles.statValue}>{stats.total_demands || 0}</div>
                 </div>
                 <div className={`${styles.statCard} ${styles.pending}`}>
                     <h3>Pending</h3>
-                    <div className={styles.statValue}>{stats.pending}</div>
+                    <div className={styles.statValue}>{stats.pending_demands || 0}</div>
                 </div>
                 <div className={`${styles.statCard} ${styles.fulfilled}`}>
                     <h3>Fulfilled</h3>
-                    <div className={styles.statValue}>{stats.fulfilled}</div>
+                    <div className={styles.statValue}>{stats.fulfilled_demands || 0}</div>
                 </div>
                 <div className={`${styles.statCard} ${styles.cancelled}`}>
                     <h3>Cancelled</h3>
-                    <div className={styles.statValue}>{stats.cancelled}</div>
+                    <div className={styles.statValue}>{stats.cancelled_demands || 0}</div>
                 </div>
             </div>
 

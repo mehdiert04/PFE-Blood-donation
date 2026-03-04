@@ -10,7 +10,9 @@ const DemandsList = () => {
     const fetchDemands = async () => {
         try {
             const response = await getBloodDemands();
-            setDemands(response.data);
+            if (response.data && response.data.data) {
+                setDemands(response.data.data);
+            }
         } catch (error) {
             console.error("Error fetching demands:", error);
         } finally {
