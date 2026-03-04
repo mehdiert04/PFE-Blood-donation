@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { CheckCircle2, XCircle, Loader2, HeartPulse, ArrowRight } from 'lucide-react';
 import Button from '../common/Button';
 import styles from './AccountVerified.module.css';
+import { verifyEmail } from '../../api/auth';
 
 // Possible states
 const STATUS = {
@@ -15,36 +16,43 @@ const STATUS = {
 const AccountVerified = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
-    const token = searchParams.get('token');
+    const id = searchParams.get('id');
+    const hash = searchParams.get('hash');
 
     const [status, setStatus] = useState(STATUS.LOADING);
 
     useEffect(() => {
         const verifyToken = async () => {
-            // No token in URL → show error immediately
-            if (!token) {
+            // Need at least id and hash from the URL
+            if (!id || !hash) {
                 setStatus(STATUS.ERROR);
                 return;
             }
 
             try {
-                // Simulate API call: replace with real endpoint later
-                // e.g. await axios.post('/api/auth/verify-email', { token })
-                await new Promise(resolve => setTimeout(resolve, 2000));
+                // Construct the backend URL using the parameters captured from the email link
+                // The email link should point to this page with id, hash, expires, and signature
+                const backendVerifyUrl = `/email/verify/${id}/${hash}?${searchParams.toString()}`;
 
-                // For demo: token 'expired' simulates expiry, otherwise success
-                if (token === 'expired') {
-                    setStatus(STATUS.EXPIRED);
-                } else {
+                const response = await verifyEmail(backendVerifyUrl);
+
+                if (response.data.success) {
                     setStatus(STATUS.SUCCESS);
+                } else {
+                    setStatus(STATUS.ERROR);
                 }
             } catch (err) {
-                setStatus(STATUS.ERROR);
+                console.error('Verification error:', err);
+                if (err.response?.status === 403) {
+                    setStatus(STATUS.EXPIRED);
+                } else {
+                    setStatus(STATUS.ERROR);
+                }
             }
         };
 
         verifyToken();
-    }, [token]);
+    }, [id, hash, searchParams]);
 
     const content = {
         [STATUS.LOADING]: {

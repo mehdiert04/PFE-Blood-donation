@@ -24,7 +24,7 @@ Route::get('/email/verify/{id}/{hash}', [AuthController::class, 'verifyEmail'])
     ->name('verification.verify');
 
 Route::post('/email/resend', [AuthController::class, 'resendVerificationEmail'])
-    ->middleware(['auth:sanctum', 'throttle:6,1'])
+    ->middleware(['throttle:6,1'])
     ->name('verification.send');
 
 

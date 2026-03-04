@@ -4,7 +4,6 @@ import { Mail, RefreshCw, ArrowLeft, CheckCircle2, HeartPulse } from 'lucide-rea
 import Button from '../common/Button';
 import styles from './VerifyEmail.module.css';
 import { resendVerificationEmail } from '../../api/auth';
-import { useNotification } from '../../contexts/NotificationContext';
 
 const VerifyEmail = () => {
     const navigate = useNavigate();

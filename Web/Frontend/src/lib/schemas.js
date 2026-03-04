@@ -59,24 +59,31 @@ export const hopitalSchema = z.object({
     }
 });
 
-// ---- Receveur Schema ----
-export const receveurSchema = z.object({
-    nom_patient: z.string().min(2, 'Nom du patient requis'),
-    age: z.number({ invalid_type_error: 'Âge invalide' }).min(0).max(120),
-    groupe_sanguin_requis: z.enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'], { errorMap: () => ({ message: 'Groupe sanguin requis' }) }),
-    quantite: z.number({ invalid_type_error: 'Quantité requise' }).min(1),
-    urgence: z.enum(['critique', 'eleve', 'normal'], { errorMap: () => ({ message: 'Niveau d\'urgence requis' }) }),
-    hopital_clinique: z.string().min(2, 'Hôpital / Clinique requis'),
-    ville: z.string().min(2, 'Ville requise'),
-    service: z.string().min(2, 'Service requis'),
-    contact_nom: z.string().min(2, 'Nom du contact requis'),
-    contact_telephone: phoneSchema,
-    contact_email: z.string().email('Email du contact invalide'),
-    justificatif: z.any().optional(), // Similar handling to Hopital
+// ---- Receveur Registration Schema (for creating an account) ----
+export const receveurRegistrationSchema = z.object({
+    nom: z.string().min(2, 'Nom requis'),
+    prenom: z.string().min(2, 'Prénom requis'),
+    email: z.string().email('Email invalide'),
+    telephone: phoneSchema,
+    groupe_sanguin_recherche: z.enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-', 'INCONNU'], { errorMap: () => ({ message: 'Groupe sanguin requis' }) }),
+    description_maladie: z.string().optional(),
+    password: passwordSchema,
+    confirmPassword: z.string()
+}).refine((data) => data.password === data.confirmPassword, {
+    message: "Les mots de passe ne correspondent pas",
+    path: ["confirmPassword"],
+});
+
+// ---- Blood Demand Schema (formerly receveurSchema) ----
+export const bloodDemandSchema = z.object({
+    blood_type: z.enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'], { errorMap: () => ({ message: 'Groupe sanguin requis' }) }),
+    quantity: z.number({ invalid_type_error: 'Quantité requise' }).min(1),
+    hospital_name: z.string().min(2, 'Hôpital / Clinique requis'),
+    city: z.string().min(2, 'Ville requise'),
+    description: z.string().optional(),
 });
 
 export const loginSchema = z.object({
     email: z.string().email('Email invalide'),
     password: z.string().min(1, 'Mot de passe requis'),
-    role: z.enum(['hopital', 'donneur', 'receveur'])
 });

@@ -46,8 +46,6 @@ export const resetPassword = async (payload) => {
     return axiosClient.post("/reset-password", payload);
 };
 
-export const getUser = async (token) => {
-    return axiosClient.get("/user", {
-        headers: { Authorization: `Bearer ${token}` }
-    });
+export const getUser = async () => {
+    return axiosClient.get("/users/me");
 };

@@ -46,7 +46,7 @@ const ForgotPassword = () => {
 
     const handleResend = async () => {
         setIsSubmitting(true);
-        await resendVerificationEmail(data);
+        await resendVerificationEmail(submittedEmail);
         setIsSubmitting(false);
         startCountdown();
     };

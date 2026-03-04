@@ -7,6 +7,7 @@ import { Lock, HeartPulse, CheckCircle2, XCircle, ArrowRight, Eye, EyeOff } from
 import Input from '../common/Input';
 import Button from '../common/Button';
 import styles from './ResetPassword.module.css';
+import { resetPassword } from '../../api/auth';
 
 
 const resetSchema = z.object({
@@ -24,8 +25,10 @@ const ResetPassword = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const token = searchParams.get('token');
+    const email = searchParams.get('email'); // Laravel usually needs email back during reset
 
     const [status, setStatus] = useState('idle'); // idle | submitting | success | error
+    const [errorMessage, setErrorMessage] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
 
@@ -62,12 +65,19 @@ const ResetPassword = () => {
 
     const onSubmit = async (data) => {
         setStatus('submitting');
+        setErrorMessage('');
         try {
-            // Simulate API — replace with real endpoint: POST /api/auth/reset-password { token, password }
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            await resetPassword({
+                token: token,
+                email: email, // Might be null if not in URL, check if Laravel works without it
+                password: data.password,
+                password_confirmation: data.confirmPassword
+            });
             setStatus('success');
-        } catch {
+        } catch (err) {
+            console.error('Reset password error:', err);
             setStatus('error');
+            setErrorMessage(err.response?.data?.message || "Une erreur est survenue lors de la réinitialisation.");
         }
     };
 
@@ -170,7 +180,7 @@ const ResetPassword = () => {
                     {status === 'error' && (
                         <div className={styles.errorMsg}>
                             <XCircle size={18} />
-                            <span>Une erreur est survenue. Veuillez réessayer.</span>
+                            <span>{errorMessage}</span>
                         </div>
                     )}
 

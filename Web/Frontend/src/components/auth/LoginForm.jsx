@@ -24,11 +24,22 @@ const LoginForm = () => {
         setLoginError(null);
         try {
             const response = await login(data);
-            localStorage.setItem('token', response.data.token);
-            localStorage.setItem('user', JSON.stringify(response.data.user));
-            navigate('/dashboard');
+            if (response.data.success) {
+                const { access_token, user } = response.data.data;
+                localStorage.setItem('ACCESS_TOKEN', access_token);
+                localStorage.setItem('USER', JSON.stringify(user));
+
+                // Redirect based on role or to dashboard
+                if (user.role === 'receveur') {
+                    navigate('/receveur/dashboard');
+                } else {
+                    navigate('/dashboard');
+                }
+            }
         } catch (err) {
-            setLoginError("Email ou mot de passe incorrect.");
+            console.error('Login error:', err);
+            const message = err.response?.data?.message || "Email ou mot de passe incorrect.";
+            setLoginError(message);
         } finally {
             setIsSubmitting(false);
         }
