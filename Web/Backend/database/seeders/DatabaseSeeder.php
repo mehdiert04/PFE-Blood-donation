@@ -38,5 +38,9 @@ class DatabaseSeeder extends Seeder
             'role' => 'receveur',
             'ville' => 'Marrakech',
         ]);
+
+        $this->call([
+            BloodDemandSeeder::class,
+        ]);
     }
 }
