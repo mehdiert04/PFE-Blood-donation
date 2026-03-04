@@ -1,0 +1,364 @@
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    color: var(--text-color, #333);
+}
+
+.header {
+    margin-bottom: 2.5rem;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #e63946 0%, #a01a24 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header p {
+    color: var(--secondary-text, #666);
+    font-size: 1.1rem;
+}
+
+/* Stats Grid */
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.statCard {
+    background: var(--card-bg, #fff);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.statCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.statCard h3 {
+    font-size: 1rem;
+    color: var(--secondary-text, #666);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.statValue {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #e63946;
+}
+
+/* Status Colors */
+.total .statValue {
+    color: #2a9d8f;
+}
+
+.pending .statValue {
+    color: #f4a261;
+}
+
+.fulfilled .statValue {
+    color: #e63946;
+}
+
+.cancelled .statValue {
+    color: #8d99ae;
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.primaryButton {
+    background: linear-gradient(135deg, #e63946 0%, #a01a24 100%);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.primaryButton:hover {
+    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.4);
+    transform: scale(1.02);
+}
+
+.secondaryButton {
+    background: transparent;
+    border: 2px solid #e63946;
+    color: #e63946;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.secondaryButton:hover {
+    background: rgba(230, 57, 70, 0.05);
+}
+
+/* Table */
+.tableResponsive {
+    background: var(--card-bg, #fff);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.table th {
+    background: #f8f9fa;
+    padding: 1.2rem 1.5rem;
+    font-weight: 600;
+    color: #495057;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.table td {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid #f1f3f5;
+    vertical-align: middle;
+}
+
+.bloodType {
+    font-weight: 700;
+    color: #e63946;
+    font-size: 1.1rem;
+}
+
+.statusBadge {
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.pending {
+    background: #fff3e0;
+    color: #f57c00;
+}
+
+.fulfilled {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.cancelled {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.tableActions {
+    display: flex;
+    gap: 1rem;
+}
+
+.viewLink {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.cancelButton {
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 0;
+}
+
+/* Form Styles */
+.formCard {
+    background: var(--card-bg, #fff);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.formHeader {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.formGroup {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.formGroup label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #495057;
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+    padding: 0.8rem 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+    outline: none;
+    border-color: #e63946;
+}
+
+.formRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.error {
+    color: #e63946;
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+}
+
+/* Detail Card */
+.detailCard {
+    background: var(--card-bg, #fff);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+.detailHeader {
+    padding: 2rem;
+    background: #f8f9fa;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detailHeader h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.backButton {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.detailContent {
+    padding: 2.5rem;
+}
+
+.infoGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.infoItem label {
+    display: block;
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+}
+
+.infoItem p {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.bloodTypeLarge {
+    font-size: 2.5rem !important;
+    color: #e63946;
+}
+
+.descriptionSection {
+    background: #fcfcfc;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px dashed #ddd;
+    margin-bottom: 2rem;
+}
+
+.descriptionSection label {
+    display: block;
+    color: #888;
+    margin-bottom: 0.5rem;
+}
+
+.metaSection {
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.cancelButtonLarge {
+    width: 100%;
+    padding: 1rem;
+    background: #fff;
+    border: 2px solid #dc3545;
+    color: #dc3545;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.cancelButtonLarge:hover {
+    background: #dc3545;
+    color: white;
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    font-size: 1.2rem;
+    color: #e63946;
+    font-weight: 600;
+}

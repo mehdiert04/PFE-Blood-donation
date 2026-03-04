@@ -9,6 +9,11 @@ import AccountVerified from './components/auth/AccountVerified';
 import ForgotPassword from './components/auth/ForgotPassword';
 import ResetPassword from './components/auth/ResetPassword';
 import HomePage from './components/home/HomePage';
+import ReceveurDashboard from './pages/receveur/Dashboard';
+import BloodDemandsList from './pages/receveur/DemandsList';
+import CreateBloodDemand from './pages/receveur/CreateDemand';
+import BloodDemandDetails from './pages/receveur/DemandDetails';
+import ReceveurLayout from './pages/receveur/ReceveurLayout';
 
 // Layout wrapper if needed later (e.g., for header/footer on other pages)
 const MainLayout = () => {
@@ -36,6 +41,17 @@ const routes = [
           { path: 'account-verified', element: <AccountVerified /> },
           { path: 'forgot-password', element: <ForgotPassword /> },
           { path: 'reset-password', element: <ResetPassword /> }
+        ]
+      },
+      {
+        path: 'receveur',
+        element: <ReceveurLayout />,
+        children: [
+          { path: 'dashboard', element: <ReceveurDashboard /> },
+          { path: 'demands', element: <BloodDemandsList /> },
+          { path: 'demands/create', element: <CreateBloodDemand /> },
+          { path: 'demands/:id', element: <BloodDemandDetails /> },
+          { path: '', element: <Navigate to="dashboard" replace /> }
         ]
       },
       // Fallback for 404
