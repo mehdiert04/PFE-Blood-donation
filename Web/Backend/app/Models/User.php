@@ -67,4 +67,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(HopitalProfile::class);
     }
+
+    /**
+     * Get the blood demands associated with the user.
+     */
+    public function bloodDemands()
+    {
+        return $this->hasMany(BloodDemand::class);
+    }
 }
