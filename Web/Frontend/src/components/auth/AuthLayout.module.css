@@ -6,6 +6,8 @@
     align-items: center;
     background-color: var(--bg-page);
     padding: 1rem;
+    padding-top: 80px;
+    /* Space for fixed navbar */
 }
 
 .formSection {

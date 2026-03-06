@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
-import { Sun, Moon, Menu, X, HeartPulse } from 'lucide-react';
+import { Sun, Moon, Menu, X, HeartPulse, User as UserIcon, ChevronDown, LogOut } from 'lucide-react';
 import Button from '../common/Button';
 import styles from './Navbar.module.css';
 
@@ -9,7 +9,21 @@ const Navbar = () => {
     const { theme, toggleTheme } = useTheme();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
     const navigate = useNavigate();
+
+    // Get user from localStorage
+    const userString = localStorage.getItem('USER');
+    const user = userString ? JSON.parse(userString) : null;
+    const isLoggedIn = !!localStorage.getItem('ACCESS_TOKEN') && !!user;
+
+    const handleLogout = () => {
+        localStorage.removeItem('ACCESS_TOKEN');
+        localStorage.removeItem('USER');
+        setIsUserMenuOpen(false);
+        setIsMenuOpen(false);
+        navigate('/auth/login');
+    };
 
     // Handle scroll effect
     useEffect(() => {
@@ -65,13 +79,37 @@ const Navbar = () => {
                         {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
                     </button>
                     <div className={styles.loginButtonWrapper}>
-                        <Button
-                            variant="primary"
-                            size="sm"
-                            onClick={() => navigate('/auth/login')}
-                        >
-                            Se connecter
-                        </Button>
+                        {isLoggedIn ? (
+                            <div className={styles.userMenuWrapper}>
+                                <button 
+                                    className={styles.userDropdownBtn}
+                                    onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                                >
+                                    <UserIcon size={20} />
+                                    <span>{user.name || user.email.split('@')[0]}</span>
+                                    <ChevronDown size={16} className={isUserMenuOpen ? styles.rotate : ''} />
+                                </button>
+                                
+                                {isUserMenuOpen && (
+                                    <div className={styles.userDropdown}>
+                                        <Link to={user.role === 'receveur' ? '/receveur/dashboard' : '/dashboard'} onClick={() => setIsUserMenuOpen(false)}>
+                                            <UserIcon size={16} /> Dashboard
+                                        </Link>
+                                        <button onClick={handleLogout} className={styles.logoutBtn}>
+                                            <LogOut size={16} /> Déconnexion
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        ) : (
+                            <Button
+                                variant="primary"
+                                size="sm"
+                                onClick={() => navigate('/auth/login')}
+                            >
+                                Se connecter
+                            </Button>
+                        )}
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -97,16 +135,33 @@ const Navbar = () => {
                         </NavLink>
                     ))}
                     <div className={styles.mobileActions}>
-                        <Button
-                            variant="primary"
-                            fullWidth
-                            onClick={() => {
-                                setIsMenuOpen(false);
-                                navigate('/auth/login');
-                            }}
-                        >
-                            Se connecter
-                        </Button>
+                        {isLoggedIn ? (
+                            <div className={styles.mobileUserActions}>
+                                <div className={styles.mobileUserInfo}>
+                                    <UserIcon size={20} />
+                                    <span>{user.name || user.email.split('@')[0]}</span>
+                                </div>
+                                <Button 
+                                    variant="outline" 
+                                    fullWidth 
+                                    onClick={handleLogout}
+                                    className={styles.mobileLogoutBtn}
+                                >
+                                    <LogOut size={18} /> Déconnexion
+                                </Button>
+                            </div>
+                        ) : (
+                            <Button
+                                variant="primary"
+                                fullWidth
+                                onClick={() => {
+                                    setIsMenuOpen(false);
+                                    navigate('/auth/login');
+                                }}
+                            >
+                                Se connecter
+                            </Button>
+                        )}
                     </div>
                 </div>
             )}

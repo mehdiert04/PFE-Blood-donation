@@ -15,12 +15,16 @@ import CreateBloodDemand from './pages/receveur/CreateDemand';
 import BloodDemandDetails from './pages/receveur/DemandDetails';
 import ReceveurLayout from './pages/receveur/ReceveurLayout';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+import Navbar from './components/common/Navbar';
 
 // Layout wrapper if needed later (e.g., for header/footer on other pages)
 const MainLayout = () => {
   return (
     <div className="main-layout">
-      <Outlet />
+      <Navbar />
+      <div className="content-wrapper">
+        <Outlet />
+      </div>
     </div>
   );
 };

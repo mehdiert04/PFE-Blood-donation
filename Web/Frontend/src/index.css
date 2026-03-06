@@ -65,3 +65,9 @@ a {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(229, 57, 53, 0.4);
 }
+
+.content-wrapper {
+  min-height: calc(100vh - 70px);
+}
+
+/* No global padding-top here yet, let's handle it specifically if needed */
