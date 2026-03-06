@@ -19,3 +19,11 @@ export const createBloodDemand = async (payload) => {
 export const cancelBloodDemand = async (id) => {
     return axiosClient.put(`/receveur/demands/${id}`);
 };
+
+export const getReceveurProfile = async () => {
+    return axiosClient.get("/receveur/profile");
+};
+
+export const updateReceveurProfile = async (payload) => {
+    return axiosClient.put("/receveur/profile", payload);
+};

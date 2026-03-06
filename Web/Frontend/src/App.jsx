@@ -13,6 +13,7 @@ import ReceveurDashboard from './pages/receveur/Dashboard';
 import BloodDemandsList from './pages/receveur/DemandsList';
 import CreateBloodDemand from './pages/receveur/CreateDemand';
 import BloodDemandDetails from './pages/receveur/DemandDetails';
+import ReceveurProfile from './pages/receveur/Profile';
 import ReceveurLayout from './pages/receveur/ReceveurLayout';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Navbar from './components/common/Navbar';
@@ -59,6 +60,7 @@ const routes = [
               { path: 'demands', element: <BloodDemandsList /> },
               { path: 'demands/create', element: <CreateBloodDemand /> },
               { path: 'demands/:id', element: <BloodDemandDetails /> },
+              { path: 'profile', element: <ReceveurProfile /> },
               { path: '', element: <Navigate to="dashboard" replace /> }
             ]
           }

@@ -81,7 +81,7 @@ const Navbar = () => {
                     <div className={styles.loginButtonWrapper}>
                         {isLoggedIn ? (
                             <div className={styles.userMenuWrapper}>
-                                <button 
+                                <button
                                     className={styles.userDropdownBtn}
                                     onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
                                 >
@@ -89,11 +89,14 @@ const Navbar = () => {
                                     <span>{user.name || user.email.split('@')[0]}</span>
                                     <ChevronDown size={16} className={isUserMenuOpen ? styles.rotate : ''} />
                                 </button>
-                                
+
                                 {isUserMenuOpen && (
                                     <div className={styles.userDropdown}>
                                         <Link to={user.role === 'receveur' ? '/receveur/dashboard' : '/dashboard'} onClick={() => setIsUserMenuOpen(false)}>
                                             <UserIcon size={16} /> Dashboard
+                                        </Link>
+                                        <Link to={user.role === 'receveur' ? '/receveur/profile' : '/profile'} onClick={() => setIsUserMenuOpen(false)}>
+                                            <UserIcon size={16} /> Mon Profil
                                         </Link>
                                         <button onClick={handleLogout} className={styles.logoutBtn}>
                                             <LogOut size={16} /> Déconnexion
@@ -141,9 +144,9 @@ const Navbar = () => {
                                     <UserIcon size={20} />
                                     <span>{user.name || user.email.split('@')[0]}</span>
                                 </div>
-                                <Button 
-                                    variant="outline" 
-                                    fullWidth 
+                                <Button
+                                    variant="outline"
+                                    fullWidth
                                     onClick={handleLogout}
                                     className={styles.mobileLogoutBtn}
                                 >

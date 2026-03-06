@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, NavLink, Link } from 'react-router-dom';
-import { LayoutDashboard, ClipboardList, PlusCircle, LogOut } from 'lucide-react';
+import { LayoutDashboard, ClipboardList, PlusCircle, LogOut, User } from 'lucide-react';
 import styles from './ReceveurLayout.module.css';
 
 const ReceveurLayout = () => {
@@ -40,6 +40,13 @@ const ReceveurLayout = () => {
                     >
                         <PlusCircle size={20} />
                         <span>Create Demand</span>
+                    </NavLink>
+                    <NavLink
+                        to="/receveur/profile"
+                        className={({ isActive }) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
+                    >
+                        <User size={20} />
+                        <span>Mon Profil</span>
                     </NavLink>
                 </nav>
 
