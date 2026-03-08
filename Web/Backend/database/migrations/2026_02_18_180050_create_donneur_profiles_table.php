@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('nom');
             $table->string('prenom');
-            $table->enum('sexe', ['Homme', 'Femme']);
-            $table->date('date_naissance');
+            $table->enum('sexe', ['Homme', 'Femme'])->nullable();
+            $table->date('date_naissance')->nullable();
             $table->enum('groupe_sanguin', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']);
             $table->float('poids');
             $table->string('telephone')->unique();
