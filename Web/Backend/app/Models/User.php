@@ -75,4 +75,20 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(BloodDemand::class);
     }
+
+    /**
+     * Get the appointments booked by the donor.
+     */
+    public function rendezVous()
+    {
+        return $this->hasMany(RendezVous::class, 'donneur_id');
+    }
+
+    /**
+     * Get the appointments booked at the hospital.
+     */
+    public function appointmentsAtHospital()
+    {
+        return $this->hasMany(RendezVous::class, 'hopital_id');
+    }
 }

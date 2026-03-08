@@ -15,6 +15,11 @@ import CreateBloodDemand from './pages/receveur/CreateDemand';
 import BloodDemandDetails from './pages/receveur/DemandDetails';
 import ReceveurProfile from './pages/receveur/Profile';
 import ReceveurLayout from './pages/receveur/ReceveurLayout';
+import DonneurDashboard from './pages/donneur/Dashboard';
+import DonneurAppointments from './pages/donneur/Appointments';
+import DonneurHistory from './pages/donneur/History';
+import DonneurProfile from './pages/donneur/Profile';
+import DonneurLayout from './pages/donneur/DonneurLayout';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Navbar from './components/common/Navbar';
 
@@ -47,6 +52,22 @@ const routes = [
           { path: 'account-verified', element: <AccountVerified /> },
           { path: 'forgot-password', element: <ForgotPassword /> },
           { path: 'reset-password', element: <ResetPassword /> }
+        ]
+      },
+      {
+        element: <ProtectedRoute allowedRoles={['donneur']} />,
+        children: [
+          {
+            path: 'donneur',
+            element: <DonneurLayout />,
+            children: [
+              { path: 'dashboard', element: <DonneurDashboard /> },
+              { path: 'appointments', element: <DonneurAppointments /> },
+              { path: 'history', element: <DonneurHistory /> },
+              { path: 'profile', element: <DonneurProfile /> },
+              { path: '', element: <Navigate to="dashboard" replace /> }
+            ]
+          }
         ]
       },
       {

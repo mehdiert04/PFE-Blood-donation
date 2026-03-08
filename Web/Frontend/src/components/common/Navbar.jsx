@@ -92,10 +92,16 @@ const Navbar = () => {
 
                                 {isUserMenuOpen && (
                                     <div className={styles.userDropdown}>
-                                        <Link to={user.role === 'receveur' ? '/receveur/dashboard' : '/dashboard'} onClick={() => setIsUserMenuOpen(false)}>
+                                        <Link
+                                            to={user.role === 'receveur' ? '/receveur/dashboard' : (user.role === 'donneur' ? '/donneur/dashboard' : '/dashboard')}
+                                            onClick={() => setIsUserMenuOpen(false)}
+                                        >
                                             <UserIcon size={16} /> Dashboard
                                         </Link>
-                                        <Link to={user.role === 'receveur' ? '/receveur/profile' : '/profile'} onClick={() => setIsUserMenuOpen(false)}>
+                                        <Link
+                                            to={user.role === 'receveur' ? '/receveur/profile' : (user.role === 'donneur' ? '/donneur/profile' : '/profile')}
+                                            onClick={() => setIsUserMenuOpen(false)}
+                                        >
                                             <UserIcon size={16} /> Mon Profil
                                         </Link>
                                         <button onClick={handleLogout} className={styles.logoutBtn}>

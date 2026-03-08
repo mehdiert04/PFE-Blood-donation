@@ -1,0 +1,117 @@
+.layout {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--bg-main, #f4f7f6);
+    padding-top: 70px;
+}
+
+.sidebar {
+    width: 260px;
+    background: white;
+    border-right: 1px solid var(--border-light, #e0e0e0);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 70px;
+    height: calc(100vh - 70px);
+    z-index: 100;
+}
+
+.sidebarHeader {
+    padding: 2rem 1.5rem;
+    border-bottom: 1px solid var(--border-extra-light, #f0f0f0);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-decoration: none;
+    color: var(--primary, #e63946);
+}
+
+.logo span {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--text-muted, #888);
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav {
+    flex: 1;
+    padding: 1.5rem 0;
+}
+
+.navItem {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+    color: var(--text-main, #555);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    gap: 0.8rem;
+    font-weight: 500;
+}
+
+.navItem:hover {
+    background: var(--primary-light, #fff5f5);
+    color: var(--primary, #e63946);
+}
+
+.active {
+    background: var(--primary-light, #fff5f5);
+    color: var(--primary, #e63946);
+    border-right: 4px solid var(--primary, #e63946);
+}
+
+.sidebarFooter {
+    padding: 1.5rem;
+    border-top: 1px solid var(--border-extra-light, #f0f0f0);
+}
+
+.logoutBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: none;
+    border: none;
+    color: var(--text-muted, #888);
+    cursor: pointer;
+    width: 100%;
+    padding: 0.5rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.logoutBtn:hover {
+    color: var(--primary, #e63946);
+}
+
+.mainContent {
+    flex: 1;
+    margin-left: 260px;
+    padding: 2rem;
+    width: calc(100% - 260px);
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 70px;
+    }
+
+    .logo span,
+    .navItem span,
+    .logoutBtn span {
+        display: none;
+    }
+
+    .mainContent {
+        margin-left: 70px;
+        width: calc(100% - 70px);
+    }
+
+    .navItem {
+        justify-content: center;
+    }
+}
