@@ -1,0 +1,208 @@
+.container {
+    padding-top: 70px;
+    /* Account for fixed navbar */
+    padding-bottom: 5rem;
+    animation: fadeIn 0.8s ease-out;
+    background-color: #fff;
+    /* Ensure white background for the whole page */
+}
+
+.hero {
+    background: linear-gradient(135deg, #e63946 0%, #a82a33 100%);
+    color: white;
+    padding: 3rem 1rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.heroContent h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: #ffffff !important;
+    /* Force white color for visibility */
+}
+
+.heroContent p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    max-width: 700px;
+    margin: 0 auto;
+    color: #ffffff;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    /* Smaller cards */
+    gap: 2rem;
+    padding: 0 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.imageContainer {
+    position: relative;
+    height: 250px;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #e63946;
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.content {
+    padding: 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.description {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex: 1;
+}
+
+.infoGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.infoItem {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.infoItem span {
+    font-weight: 500;
+}
+
+.sponsors {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+}
+
+.sponsors strong {
+    display: block;
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 0.4rem;
+}
+
+.sponsors p {
+    font-size: 0.9rem;
+    color: #444;
+    margin: 0;
+}
+
+.actions {
+    margin-top: auto;
+}
+
+.participateBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 6rem 0;
+    color: #888;
+}
+
+.empty p {
+    margin-top: 1rem;
+    font-size: 1.25rem;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    font-size: 1.5rem;
+    color: #888;
+}
+
+.errorBanner {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    background: #fff5f5;
+    color: #e63946;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid #ffebeb;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .heroContent h1 {
+        font-size: 2.2rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
+}

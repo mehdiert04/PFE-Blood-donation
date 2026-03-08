@@ -10,6 +10,7 @@ use App\Http\Controllers\Receveur\ProfileController as ReceveurProfileController
 use App\Http\Controllers\Donneur\DashboardController as DonneurDashboardController;
 use App\Http\Controllers\Donneur\RendezVousController as DonneurRendezVousController;
 use App\Http\Controllers\Donneur\ProfileController as DonneurProfileController;
+use App\Http\Controllers\Api\CampaignController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/register/donneur', [AuthController::class, 'registerDonneur']);
@@ -28,6 +29,9 @@ Route::post('/email/resend', [AuthController::class, 'resendVerificationEmail'])
     ->middleware(['throttle:6,1'])
     ->name('verification.send');
 
+// Public Campaign routes
+Route::get('/campaigns', [CampaignController::class, 'index']);
+Route::get('/campaigns/{id}', [CampaignController::class, 'show']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);

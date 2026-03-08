@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Calendar, Clock, MapPin, Droplet, Plus, Trash2, AlertCircle, CheckCircle } from 'lucide-react';
 import { getAppointments, createAppointment, cancelAppointment } from '../../api/donneur';
@@ -15,13 +16,18 @@ const Appointments = () => {
     const [showForm, setShowForm] = useState(false);
     const [message, setMessage] = useState(null);
     const [error, setError] = useState(null);
+    const location = useLocation();
+    const campaignHospitalId = location.state?.hospitalId || null;
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     useEffect(() => {
         fetchData();
         fetchHospitals();
-    }, []);
+        if (campaignHospitalId) {
+            setShowForm(true);
+        }
+    }, [campaignHospitalId]);
 
     const fetchData = async () => {
         try {
@@ -104,7 +110,11 @@ const Appointments = () => {
                         <div className={styles.grid}>
                             <div className={styles.field}>
                                 <label><MapPin size={16} /> Hôpital / Centre</label>
-                                <select {...register('hopital_id', { required: true })} className={styles.select}>
+                                <select
+                                    {...register('hopital_id', { required: true })}
+                                    className={styles.select}
+                                    defaultValue={campaignHospitalId || ""}
+                                >
                                     <option value="">Sélectionnez un hôpital</option>
                                     {hospitals.map(h => (
                                         <option key={h.id} value={h.id}>

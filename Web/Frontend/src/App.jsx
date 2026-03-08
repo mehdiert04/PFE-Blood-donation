@@ -20,6 +20,7 @@ import DonneurAppointments from './pages/donneur/Appointments';
 import DonneurHistory from './pages/donneur/History';
 import DonneurProfile from './pages/donneur/Profile';
 import DonneurLayout from './pages/donneur/DonneurLayout';
+import Campaigns from './pages/public/Campaigns';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Navbar from './components/common/Navbar';
 
@@ -42,6 +43,7 @@ const routes = [
     element: <MainLayout />,
     children: [
       { path: '/', element: <HomePage /> },
+      { path: '/campaigns', element: <Campaigns /> },
       {
         path: 'auth/*',
         element: <AuthPage />,

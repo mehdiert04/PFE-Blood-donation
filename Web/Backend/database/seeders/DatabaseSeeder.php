@@ -18,32 +18,49 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::create([
-            'email' => 'admin@example.com',
-            'password' => 'password123',
-            'email_verified_at' => now(),
-            'role' => 'admin',
-            'ville' => 'Casablanca',
-        ]);
+        User::updateOrCreate(
+            ['email' => 'admin@example.com'],
+            [
+                'password' => Hash::make('password123'),
+                'email_verified_at' => now(),
+                'role' => 'admin',
+                'ville' => 'Casablanca',
+            ]
+        );
 
-        User::create([
-            'email' => 'donneur@example.com',
-            'password' => 'password123',
-            'email_verified_at' => now(),
-            'role' => 'donneur',
-            'ville' => 'Rabat',
-        ]);
+        User::updateOrCreate(
+            ['email' => 'donneur@example.com'],
+            [
+                'password' => Hash::make('password123'),
+                'email_verified_at' => now(),
+                'role' => 'donneur',
+                'ville' => 'Rabat',
+            ]
+        );
 
-        User::create([
-            'email' => 'receveur@example.com',
-            'password' => 'password123',
-            'email_verified_at' => now(),
-            'role' => 'receveur',
-            'ville' => 'Marrakech',
-        ]);
+        User::updateOrCreate(
+            ['email' => 'receveur@example.com'],
+            [
+                'password' => Hash::make('password123'),
+                'email_verified_at' => now(),
+                'role' => 'receveur',
+                'ville' => 'Marrakech',
+            ]
+        );
+
+        User::updateOrCreate(
+            ['email' => 'hopital@example.com'],
+            [
+                'password' => Hash::make('password123'),
+                'email_verified_at' => now(),
+                'role' => 'hopital',
+                'ville' => 'Casablanca',
+            ]
+        );
 
         $this->call([
             BloodDemandSeeder::class,
+            CampaignSeeder::class,
         ]);
     }
 }

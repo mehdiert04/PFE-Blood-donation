@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useOutletContext, useNavigate } from 'react-router-dom';
+import { useOutletContext, useNavigate, useLocation } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Mail, Lock, AlertCircle } from 'lucide-react';
 import { loginSchema } from '../../lib/schemas';
@@ -12,6 +12,9 @@ import { login } from '../../api/auth';
 const LoginForm = () => {
     const { onSwitchToRegister } = useOutletContext();
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from || null;
+    const infoMessage = location.state?.message || null;
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [loginError, setLoginError] = useState(null);
 
@@ -29,9 +32,13 @@ const LoginForm = () => {
                 localStorage.setItem('ACCESS_TOKEN', access_token);
                 localStorage.setItem('USER', JSON.stringify(user));
 
-                // Redirect based on role or to dashboard
-                if (user.role === 'receveur') {
+                // Redirect based on role or to previous page
+                if (from) {
+                    navigate(from);
+                } else if (user.role === 'receveur') {
                     navigate('/receveur/dashboard');
+                } else if (user.role === 'donneur') {
+                    navigate('/donneur/dashboard');
                 } else {
                     navigate('/dashboard');
                 }
@@ -47,6 +54,12 @@ const LoginForm = () => {
 
     return (
         <div className={styles.formContainer}>
+            {infoMessage && (
+                <div style={{ marginBottom: '1rem', padding: '0.8rem', background: '#f0f7ff', color: '#0056b3', borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem' }}>
+                    <AlertCircle size={18} />
+                    <span>{infoMessage}</span>
+                </div>
+            )}
             <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
                 <Input
                     type="email"
