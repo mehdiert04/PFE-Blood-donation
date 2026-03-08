@@ -65,6 +65,7 @@ export const receveurRegistrationSchema = z.object({
     prenom: z.string().min(2, 'Prénom requis'),
     email: z.string().email('Email invalide'),
     telephone: phoneSchema,
+    ville: z.string().min(2, 'Ville requise'),
     groupe_sanguin_recherche: z.enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-', 'INCONNU'], { errorMap: () => ({ message: 'Groupe sanguin requis' }) }),
     description_maladie: z.string().optional(),
     password: passwordSchema,

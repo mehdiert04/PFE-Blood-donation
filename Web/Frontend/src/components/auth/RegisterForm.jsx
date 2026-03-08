@@ -151,12 +151,15 @@ const RegisterForm = () => {
                 )}
 
                 {selectedRole === 'receveur' && (
-                    <Input
-                        label="Description de la situation (Optionnel)"
-                        {...register('description_maladie')}
-                        error={errors.description_maladie}
-                        placeholder="Brève description du besoin..."
-                    />
+                    <div className={styles.grid2}>
+                        <Input label="Ville" {...register('ville')} error={errors.ville} icon={MapPin} />
+                        <Input
+                            label="Situation Médicale"
+                            {...register('description_maladie')}
+                            error={errors.description_maladie}
+                            placeholder="Brève description du besoin..."
+                        />
+                    </div>
                 )}
 
                 <div className={styles.grid2}>

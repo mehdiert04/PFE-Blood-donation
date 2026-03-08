@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->string('telephone')->unique();
+            $table->enum('sexe', ['Homme', 'Femme'])->nullable();
+            $table->date('date_naissance')->nullable();
             $table->enum('groupe_sanguin_recherche', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-', 'INCONNU']);
             $table->text('description_maladie')->nullable();
             $table->timestamps();

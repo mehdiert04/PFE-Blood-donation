@@ -65,6 +65,7 @@ class AuthController extends Controller
             'groupe_sanguin' => 'required|in:A+,A-,B+,B-,AB+,AB-,O+,O-',
             'poids' => 'required|numeric|min:50.01',
             'telephone' => ['required', 'unique:donneur_profiles', 'regex:' . $this->mobileRegex],
+            'ville' => 'required|string|max:255',
         ], $messages);
 
         if ($validator->fails()) {
@@ -80,6 +81,7 @@ class AuthController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'role' => 'donneur',
+                'ville' => $request->ville,
             ]);
 
             $user->donneurProfile()->create([
@@ -129,6 +131,7 @@ class AuthController extends Controller
             'password' => 'required|min:8|confirmed',
             'telephone' => ['required', 'unique:receveur_profiles', 'regex:' . $this->mobileRegex],
             'groupe_sanguin_recherche' => 'required|in:A+,A-,B+,B-,AB+,AB-,O+,O-,INCONNU',
+            'ville' => 'required|string|max:255',
             'description_maladie' => 'nullable|string',
         ], $messages);
 
@@ -145,6 +148,7 @@ class AuthController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'role' => 'receveur',
+                'ville' => $request->ville,
             ]);
 
             $user->receveurProfile()->create([
