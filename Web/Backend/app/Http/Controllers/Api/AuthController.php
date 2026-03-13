@@ -127,10 +127,6 @@ class AuthController extends Controller
             'telephone.required' => 'Téléphone invalide, doit commencer par 06 ou 07 et avoir 10 chiffres',
             'telephone.regex' => 'Téléphone invalide, doit commencer par 06 ou 07 et avoir 10 chiffres',
             'telephone.unique' => 'Ce numéro de téléphone est déjà utilisé',
-            'groupe_sanguin_recherche.required' => 'Veuillez sélectionner au moins un groupe sanguin.',
-            'groupe_sanguin_recherche.array' => 'Les groupes sanguins doivent être sous forme de liste (array).',
-            'groupe_sanguin_recherche.min' => 'Veuillez sélectionner au moins un groupe sanguin.',
-            'groupe_sanguin_recherche.*.in' => 'L\'un des groupes sanguins sélectionnés est invalide (Doit être A+, A-, B+, B-, AB+, AB-, O+, O-, ou INCONNU).',
         ];
 
         $validator = Validator::make($request->all(), [
@@ -139,8 +135,6 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|confirmed',
             'telephone' => ['required', 'unique:receveur_profiles', 'regex:' . $this->mobileRegex],
-            'groupe_sanguin_recherche' => 'required|array|min:1',
-            'groupe_sanguin_recherche.*' => 'required|string|in:A+,A-,B+,B-,AB+,AB-,O+,O-,INCONNU',
             'date_naissance' => 'required|date',
             'groupe_sanguin' => 'required|in:A+,A-,B+,B-,AB+,AB-,O+,O-',
             'sexe' => 'required|in:Homme,Femme',
@@ -166,7 +160,7 @@ class AuthController extends Controller
                 'nom' => $request->nom,
                 'prenom' => $request->prenom,
                 'telephone' => $request->telephone,
-                'groupe_sanguin_recherche' => $request->groupe_sanguin_recherche,
+                'groupe_sanguin_recherche' => null,
                 'groupe_sanguin' => $request->groupe_sanguin,
                 'date_naissance' => $request->date_naissance,
                 'sexe' => $request->sexe,
