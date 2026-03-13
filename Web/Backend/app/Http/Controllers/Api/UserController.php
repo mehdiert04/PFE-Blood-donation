@@ -27,12 +27,11 @@ class UserController extends Controller
             $profile = $user->receveurProfile;
             $data['prenom'] = $profile ? $profile->prenom : null;
             $data['nom'] = $profile ? $profile->nom : null;
-            $data['groupe_sanguin'] = $profile ? $profile->groupe_sanguin_recherche : null;
+            $data['groupe_sanguin'] = $profile ? $profile->groupe_sanguin : null;
         } elseif ($user->role === 'hopital') {
             $profile = $user->hopitalProfile;
-            $data['prenom'] = $profile ? $profile->nom_responsable : null;
-            $data['nom'] = $profile ? $profile->nom_etablissement : null;
-            // Exclude groupe_sanguin for hopital
+            $data['Responsable'] = $profile ? $profile->nom_responsable : null;
+            $data['Etablissement'] = $profile ? $profile->nom_etablissement : null;
         }
         
         return response()->json([

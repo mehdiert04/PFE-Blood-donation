@@ -18,6 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->alias([
             'receveur' => \App\Http\Middleware\CheckReceveurRole::class,
+            'donneur' => \App\Http\Middleware\CheckDonneurRole::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

@@ -18,14 +18,6 @@ class StatistiquesController extends Controller
     {
         $user = $request->user();
 
-        if ($user->role !== 'donneur') {
-            return response()->json([
-                'success' => false,
-                'message' => 'Accès réservé aux donneurs.',
-                'data'    => null,
-            ], 403);
-        }
-
         $totalDons = RendezVous::where('donneur_id', $user->id)
             ->where('statut', 'Terminé')
             ->count();

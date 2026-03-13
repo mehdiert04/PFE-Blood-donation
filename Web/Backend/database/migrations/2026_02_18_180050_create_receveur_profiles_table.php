@@ -17,8 +17,11 @@ return new class extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->string('telephone')->unique();
-            $table->enum('groupe_sanguin_recherche', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-', 'INCONNU']);
-            $table->text('description_maladie')->nullable();
+            $table->date('date_naissance');
+            $table->enum('sexe', ['Homme', 'Femme']);
+            $table->enum('groupe_sanguin', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-', 'INCONNU']);
+            $table->enum('degre_urgence', ['Faible', 'Moyen', 'Critique'])->default('Faible');
+            $table->json('groupes_sanguins_recherches')->nullable();
             $table->timestamps();
         });
     }

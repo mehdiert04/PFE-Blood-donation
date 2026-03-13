@@ -35,11 +35,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/hospitals', [HopitalController::class, 'index']);
 
     // Donor Module – English routes
-    Route::get('/stats', [StatistiquesController::class, 'index']);
-    Route::get('/donations', [DonationHistoryController::class, 'index']);
-    Route::get('/appointments/next', [RendezVousController::class, 'next']);
-    Route::get('/appointments', [RendezVousController::class, 'index']);
-    Route::post('/appointments', [RendezVousController::class, 'store']);
+    Route::prefix('donneur')->middleware('donneur')->group(function () {
+        Route::get('/stats', [StatistiquesController::class, 'index']);
+        Route::get('/donations', [DonationHistoryController::class, 'index']);
+        Route::get('/appointments/next', [RendezVousController::class, 'next']);
+        Route::get('/appointments', [RendezVousController::class, 'index']);
+        Route::post('/appointments', [RendezVousController::class, 'store']);
+    });
 
     // Receveur Module
     Route::prefix('receveur')->middleware('receveur')->group(function () {
