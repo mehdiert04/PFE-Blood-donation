@@ -28,14 +28,6 @@ class RendezVousController extends Controller
     {
         $user = $request->user();
 
-        // ── Guard: only donors may book ──────────────────────────────
-        if ($user->role !== 'donneur') {
-            return response()->json([
-                'success' => false,
-                'message' => 'Seuls les donneurs peuvent prendre un rendez-vous.',
-                'data'    => null,
-            ], 403);
-        }
 
         // ── Validation ──────────────────────────────────────────────
         $validated = $request->validate([
