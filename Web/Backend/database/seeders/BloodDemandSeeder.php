@@ -64,10 +64,35 @@ class BloodDemandSeeder extends Seeder
                 'created_at' => now()->subHours(5),
                 'updated_at' => now()->subHours(5),
             ],
+            [
+                'user_id' => $receveur->id,
+                'blood_type' => 'O-',
+                'quantity' => 2,
+                'hospital_name' => 'Hôpital Avicenne',
+                'city' => 'Rabat',
+                'description' => 'Besoin urgent pour une intervention cardiaque.',
+                'status' => 'pending',
+                'created_at' => now()->subDays(1),
+                'updated_at' => now()->subDays(1),
+            ],
+            [
+                'user_id' => $receveur->id,
+                'blood_type' => 'B-',
+                'quantity' => 4,
+                'hospital_name' => 'CHU Ibn Rochd',
+                'city' => 'Casablanca',
+                'description' => 'Patiente souffrant d\'anémie sévère.',
+                'status' => 'pending',
+                'created_at' => now()->subHours(12),
+                'updated_at' => now()->subHours(12),
+            ],
         ];
 
         foreach ($demands as $demand) {
-            BloodDemand::create($demand);
+            BloodDemand::updateOrCreate(
+                ['description' => $demand['description'], 'user_id' => $demand['user_id']],
+                $demand
+            );
         }
     }
 }

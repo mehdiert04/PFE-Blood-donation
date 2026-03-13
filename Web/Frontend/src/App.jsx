@@ -21,6 +21,7 @@ import DonneurHistory from './pages/donneur/History';
 import DonneurProfile from './pages/donneur/Profile';
 import DonneurLayout from './pages/donneur/DonneurLayout';
 import Campaigns from './pages/public/Campaigns';
+import BloodRequests from './pages/public/BloodRequests';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Navbar from './components/common/Navbar';
 
@@ -44,6 +45,7 @@ const routes = [
     children: [
       { path: '/', element: <HomePage /> },
       { path: '/campaigns', element: <Campaigns /> },
+      { path: '/request-blood', element: <BloodRequests /> },
       {
         path: 'auth/*',
         element: <AuthPage />,

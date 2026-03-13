@@ -1,0 +1,262 @@
+.container {
+    padding-top: 70px;
+    padding-bottom: 5rem;
+    animation: fadeIn 0.8s ease-out;
+    background-color: #f9fafb;
+}
+
+.hero {
+    background: linear-gradient(135deg, #e63946 0%, #a82a33 100%);
+    color: white;
+    padding: 4rem 1rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.heroContent h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.heroContent p {
+    font-size: 1.15rem;
+    opacity: 0.9;
+    max-width: 650px;
+    margin: 0 auto;
+    color: #ffffff;
+}
+
+.contentWrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.filterBar {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+}
+
+.filterGroup {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.filterGroup label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #666;
+}
+
+.select {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: white;
+    color: #333;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.select:focus {
+    border-color: #e63946;
+}
+
+.searchBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 48px;
+    padding: 0 2rem;
+    background-color: #e63946;
+    color: white;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.cardHeader {
+    padding: 1.5rem;
+    background: #fdf2f2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bloodBadge {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.bloodBadge.APlus,
+.bloodBadge.BPlus,
+.bloodBadge.ABPlus,
+.bloodBadge.OPlus {
+    background: #e63946;
+}
+
+.bloodBadge.AMinus,
+.bloodBadge.BMinus,
+.bloodBadge.ABMinus,
+.bloodBadge.OMinus {
+    background: #a82a33;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #666;
+    font-weight: 600;
+}
+
+.cardBody {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.infoRow {
+    display: flex;
+    gap: 1rem;
+    align-items: start;
+}
+
+.infoRow .icon {
+    color: #e63946;
+    margin-top: 0.2rem;
+}
+
+.infoRow strong {
+    display: block;
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 0.2rem;
+}
+
+.infoRow p {
+    color: #333;
+    font-weight: 500;
+    margin: 0;
+}
+
+.description {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+.description .icon {
+    color: #888;
+}
+
+.description p {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.cardFooter {
+    padding: 1.5rem;
+    border-top: 1px solid #f0f0f0;
+}
+
+.helpBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+}
+
+.emptyState {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 5rem 0;
+    color: #888;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    font-size: 1.2rem;
+    color: #888;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filterBar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filterGroup {
+        min-width: 100%;
+    }
+}

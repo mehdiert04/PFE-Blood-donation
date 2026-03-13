@@ -11,6 +11,7 @@ use App\Http\Controllers\Donneur\DashboardController as DonneurDashboardControll
 use App\Http\Controllers\Donneur\RendezVousController as DonneurRendezVousController;
 use App\Http\Controllers\Donneur\ProfileController as DonneurProfileController;
 use App\Http\Controllers\Api\CampaignController;
+use App\Http\Controllers\Api\PublicBloodDemandController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/register/donneur', [AuthController::class, 'registerDonneur']);
@@ -32,6 +33,10 @@ Route::post('/email/resend', [AuthController::class, 'resendVerificationEmail'])
 // Public Campaign routes
 Route::get('/campaigns', [CampaignController::class, 'index']);
 Route::get('/campaigns/{id}', [CampaignController::class, 'show']);
+
+// Public Blood Demand routes
+Route::get('/public-demands', [PublicBloodDemandController::class, 'index']);
+Route::get('/public-demands/{id}', [PublicBloodDemandController::class, 'show']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
