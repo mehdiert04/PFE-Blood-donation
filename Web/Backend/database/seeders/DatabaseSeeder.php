@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         User::updateOrCreate(
             ['email' => 'admin@example.com'],
             [
+                'name' => 'Admin User',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'role' => 'admin',
@@ -28,35 +29,58 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        User::updateOrCreate(
+        $donneur = User::updateOrCreate(
             ['email' => 'donneur@example.com'],
             [
+                'name' => 'Donneur Profile',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'role' => 'donneur',
                 'ville' => 'Rabat',
             ]
         );
+        $donneur->donneurProfile()->updateOrCreate([], [
+            'nom' => 'Donneur',
+            'prenom' => 'User',
+            'groupe_sanguin' => 'A+',
+            'poids' => 75.5,
+            'telephone' => '0600000001'
+        ]);
 
-        User::updateOrCreate(
+        $receveur = User::updateOrCreate(
             ['email' => 'receveur@example.com'],
             [
+                'name' => 'Receveur Profile',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'role' => 'receveur',
                 'ville' => 'Marrakech',
             ]
         );
+        $receveur->receveurProfile()->updateOrCreate([], [
+            'nom' => 'Receveur',
+            'prenom' => 'User',
+            'telephone' => '0600000002',
+            'groupe_sanguin_recherche' => 'O+'
+        ]);
 
-        User::updateOrCreate(
+        $hopital = User::updateOrCreate(
             ['email' => 'hopital@example.com'],
             [
+                'name' => 'Hopital Casablanca',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'role' => 'hopital',
                 'ville' => 'Casablanca',
             ]
         );
+        $hopital->hopitalProfile()->updateOrCreate([], [
+            'nom_etablissement' => 'CHU Casablanca',
+            'nom_responsable' => 'Dr. Ahmed',
+            'telephone_fixe' => '0522000001',
+            'latitude' => 33.5731,
+            'longitude' => -7.5898
+        ]);
 
         $this->call([
             BloodDemandSeeder::class,

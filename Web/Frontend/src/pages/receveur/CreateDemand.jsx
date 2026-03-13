@@ -7,7 +7,6 @@ const CreateDemand = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         blood_type: '',
-        quantity: 1,
         hospital_name: '',
         city: '',
         description: ''
@@ -71,19 +70,6 @@ const CreateDemand = () => {
                             {errors.blood_type && <span className={styles.error}>{errors.blood_type[0]}</span>}
                         </div>
 
-                        <div className={styles.formGroup}>
-                            <label htmlFor="quantity">Quantity (Units)</label>
-                            <input
-                                type="number"
-                                id="quantity"
-                                name="quantity"
-                                min="1"
-                                value={formData.quantity}
-                                onChange={handleChange}
-                                required
-                            />
-                            {errors.quantity && <span className={styles.error}>{errors.quantity[0]}</span>}
-                        </div>
                     </div>
 
                     <div className={styles.formGroup}>

@@ -14,7 +14,6 @@ class BloodDemand extends Model
     protected $fillable = [
         'user_id',
         'blood_type',
-        'quantity',
         'hospital_name',
         'city',
         'description',

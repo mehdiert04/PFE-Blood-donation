@@ -23,7 +23,6 @@ class BloodDemandSeeder extends Seeder
             [
                 'user_id' => $receveur->id,
                 'blood_type' => 'O+',
-                'quantity' => 2,
                 'hospital_name' => 'CHU Mohammed VI',
                 'city' => 'Marrakech',
                 'description' => 'Urgent need for surgery.',
@@ -34,7 +33,6 @@ class BloodDemandSeeder extends Seeder
             [
                 'user_id' => $receveur->id,
                 'blood_type' => 'A-',
-                'quantity' => 1,
                 'hospital_name' => 'Clinique de l\'Aeroport',
                 'city' => 'Casablanca',
                 'description' => 'Post-accident stabilization.',
@@ -45,7 +43,6 @@ class BloodDemandSeeder extends Seeder
             [
                 'user_id' => $receveur->id,
                 'blood_type' => 'B+',
-                'quantity' => 3,
                 'hospital_name' => 'Hopital Militaire',
                 'city' => 'Rabat',
                 'description' => 'Chronic condition treatment.',
@@ -56,7 +53,6 @@ class BloodDemandSeeder extends Seeder
             [
                 'user_id' => $receveur->id,
                 'blood_type' => 'AB+',
-                'quantity' => 1,
                 'hospital_name' => 'Hopital Cheikh Zaid',
                 'city' => 'Rabat',
                 'description' => 'Needed for regular transfusion.',
@@ -67,7 +63,6 @@ class BloodDemandSeeder extends Seeder
             [
                 'user_id' => $receveur->id,
                 'blood_type' => 'O-',
-                'quantity' => 2,
                 'hospital_name' => 'Hôpital Avicenne',
                 'city' => 'Rabat',
                 'description' => 'Besoin urgent pour une intervention cardiaque.',
@@ -78,7 +73,6 @@ class BloodDemandSeeder extends Seeder
             [
                 'user_id' => $receveur->id,
                 'blood_type' => 'B-',
-                'quantity' => 4,
                 'hospital_name' => 'CHU Ibn Rochd',
                 'city' => 'Casablanca',
                 'description' => 'Patiente souffrant d\'anémie sévère.',

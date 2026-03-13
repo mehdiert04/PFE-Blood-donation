@@ -118,13 +118,6 @@ const BloodRequests = () => {
                                             </div>
                                         </div>
                                         <div className={styles.infoRow}>
-                                            <Droplet size={18} className={styles.icon} />
-                                            <div>
-                                                <strong>Quantité nécessaire</strong>
-                                                <p>{demand.quantity} poches</p>
-                                            </div>
-                                        </div>
-                                        <div className={styles.infoRow}>
                                             <User size={18} className={styles.icon} />
                                             <div>
                                                 <strong>Demandeur</strong>

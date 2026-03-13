@@ -55,7 +55,6 @@ const DemandsList = () => {
                     <thead>
                         <tr>
                             <th>Blood Type</th>
-                            <th>Quantity</th>
                             <th>Hospital</th>
                             <th>City</th>
                             <th>Status</th>
@@ -67,7 +66,6 @@ const DemandsList = () => {
                             demands.map((demand) => (
                                 <tr key={demand.id}>
                                     <td className={styles.bloodType}>{demand.blood_type}</td>
-                                    <td>{demand.quantity} Unit(s)</td>
                                     <td>{demand.hospital_name}</td>
                                     <td>{demand.city}</td>
                                     <td>
@@ -92,7 +90,7 @@ const DemandsList = () => {
                             ))
                         ) : (
                             <tr>
-                                <td colSpan="6" className={styles.emptyMessage}>
+                                <td colSpan="5" className={styles.emptyMessage}>
                                     No demands found. Create one to get started.
                                 </td>
                             </tr>

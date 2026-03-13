@@ -29,7 +29,6 @@ class BloodDemandController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'blood_type' => 'required|in:A+,A-,B+,B-,AB+,AB-,O+,O-',
-            'quantity' => 'required|integer|min:1',
             'hospital_name' => 'required|string|max:255',
             'city' => 'required|string|max:255',
             'description' => 'nullable|string',
@@ -85,15 +84,11 @@ class BloodDemandController extends Controller
             ], 403);
         }
 
-        $validator = Validator::make($request->all(), [
-            'status' => 'required|in:cancelled',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'errors' => $validator->errors()
-            ], 422);
+        // For simple cancellation without requiring body status
+        $status = $request->input('status', 'cancelled');
+        
+        if ($status !== 'cancelled') {
+            return response()->json(['success' => false, 'message' => 'Status invalide.'], 422);
         }
 
         if ($demand->status !== 'pending') {

@@ -61,10 +61,6 @@ const DemandDetails = () => {
                             <p className={styles.bloodTypeLarge}>{demand.blood_type}</p>
                         </div>
                         <div className={styles.infoItem}>
-                            <label>Quantity</label>
-                            <p>{demand.quantity} Unit(s)</p>
-                        </div>
-                        <div className={styles.infoItem}>
                             <label>Hospital</label>
                             <p>{demand.hospital_name}</p>
                         </div>
