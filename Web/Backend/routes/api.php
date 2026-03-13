@@ -13,6 +13,9 @@ use App\Http\Controllers\Donneur\ProfileController as DonneurProfileController;
 use App\Http\Controllers\Api\CampaignController;
 use App\Http\Controllers\Api\PublicBloodDemandController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\StatistiquesController;
+use App\Http\Controllers\Api\DonationHistoryController;
+use App\Http\Controllers\Api\RendezVousController;
 
 Route::post('/register/donneur', [AuthController::class, 'registerDonneur']);
 Route::post('/register/receveur', [AuthController::class, 'registerReceveur']);
@@ -43,12 +46,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/users/me', [UserController::class, 'me']);
     Route::get('/hospitals', [HopitalController::class, 'index']);
 
-    // Donneur Module
+    // Donor Module – English routes
     Route::prefix('donneur')->middleware('donneur')->group(function () {
-        Route::get('/stats', [DonneurDashboardController::class, 'index']);
-        Route::apiResource('appointments', DonneurRendezVousController::class)->only(['index', 'store', 'update']);
-        Route::get('/profile', [DonneurProfileController::class, 'show']);
-        Route::put('/profile', [DonneurProfileController::class, 'update']);
+        Route::get('/stats', [StatistiquesController::class, 'index']);
+        Route::get('/donations', [DonationHistoryController::class, 'index']);
+        Route::get('/appointments/next', [RendezVousController::class, 'next']);
+        Route::get('/appointments', [RendezVousController::class, 'index']);
+        Route::post('/appointments', [RendezVousController::class, 'store']);
     });
 
     // Receveur Module

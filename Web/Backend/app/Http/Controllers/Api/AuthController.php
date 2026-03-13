@@ -64,6 +64,7 @@ class AuthController extends Controller
             ],
             'groupe_sanguin' => 'required|in:A+,A-,B+,B-,AB+,AB-,O+,O-',
             'poids' => 'required|numeric|min:50.01',
+            'description_maladie' => 'nullable|string',
             'telephone' => ['required', 'unique:donneur_profiles', 'regex:' . $this->mobileRegex],
             'ville' => 'required|string|max:255',
         ], $messages);
@@ -91,6 +92,7 @@ class AuthController extends Controller
                 'date_naissance' => $request->date_naissance,
                 'groupe_sanguin' => $request->groupe_sanguin,
                 'poids' => $request->poids,
+                'description_maladie' => $request->description_maladie,
                 'telephone' => $request->telephone,
             ]);
 
@@ -114,14 +116,19 @@ class AuthController extends Controller
             'email.required' => 'Email non valide, exemple: exemple@domain.com',
             'email.email' => 'Email non valide, exemple: exemple@domain.com',
             'email.unique' => 'Cet email est déjà utilisé',
+            'date_naissance.required' => 'La date de naissance est obligatoire',
+            'date_naissance.date' => 'Format de date invalide',
+            'sexe.required' => 'Le sexe est obligatoire',
+            'sexe.in' => 'Le sexe doit être Homme ou Femme',
+            'degre_urgence.in' => 'Degré d\'urgence invalide (Faible, Moyen, Critique)',
             'password.required' => 'Password doit contenir au moins 8 caractères',
             'password.min' => 'Password doit contenir au moins 8 caractères',
             'password.confirmed' => 'Password confirmation ne correspond pas',
+            'groupe_sanguin.required' => 'Groupe sanguin doit être A+, A-, B+, B-, AB+, AB-, O+, O-',
+            'groupe_sanguin.in' => 'Groupe sanguin doit être A+, A-, B+, B-, AB+, AB-, O+, O-',
             'telephone.required' => 'Téléphone invalide, doit commencer par 06 ou 07 et avoir 10 chiffres',
             'telephone.regex' => 'Téléphone invalide, doit commencer par 06 ou 07 et avoir 10 chiffres',
             'telephone.unique' => 'Ce numéro de téléphone est déjà utilisé',
-            'groupe_sanguin_recherche.required' => 'Groupe sanguin doit être A+, A-, B+, B-, AB+, AB-, O+, O-',
-            'groupe_sanguin_recherche.in' => 'Groupe sanguin doit être A+, A-, B+, B-, AB+, AB-, O+, O-',
         ];
 
         $validator = Validator::make($request->all(), [
@@ -130,9 +137,10 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|confirmed',
             'telephone' => ['required', 'unique:receveur_profiles', 'regex:' . $this->mobileRegex],
-            'groupe_sanguin_recherche' => 'required|in:A+,A-,B+,B-,AB+,AB-,O+,O-,INCONNU',
-            'ville' => 'required|string|max:255',
-            'description_maladie' => 'nullable|string',
+            'date_naissance' => 'required|date',
+            'groupe_sanguin' => 'required|in:A+,A-,B+,B-,AB+,AB-,O+,O-',
+            'sexe' => 'required|in:Homme,Femme',
+            'degre_urgence' => 'nullable|in:Faible,Moyen,Critique',
         ], $messages);
 
         if ($validator->fails()) {
@@ -155,8 +163,11 @@ class AuthController extends Controller
                 'nom' => $request->nom,
                 'prenom' => $request->prenom,
                 'telephone' => $request->telephone,
-                'groupe_sanguin_recherche' => $request->groupe_sanguin_recherche,
-                'description_maladie' => $request->description_maladie,
+                'groupe_sanguin_recherche' => null,
+                'groupe_sanguin' => $request->groupe_sanguin,
+                'date_naissance' => $request->date_naissance,
+                'sexe' => $request->sexe,
+                'degre_urgence' => $request->degre_urgence ?? 'Faible',
             ]);
 
             event(new Registered($user));

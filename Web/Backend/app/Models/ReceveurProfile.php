@@ -14,6 +14,10 @@ class ReceveurProfile extends Model
      */
     protected $table = 'receveur_profiles';
 
+    protected $casts = [
+        'groupe_sanguin_recherche' => 'array',
+    ];
+
     /**
      * The attributes that are not mass assignable.
      *

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('rendez_vous', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('donneur_id')->constrained('users');
-            $table->foreignId('hopital_id')->constrained('users');
+            $table->foreignId('donneur_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('hopital_id')->constrained('users')->onDelete('cascade');
             $table->date('date_rdv');
             $table->time('heure_rdv');
             $table->enum('type_don', ['Sang Total', 'Plasma', 'Plaquettes']);

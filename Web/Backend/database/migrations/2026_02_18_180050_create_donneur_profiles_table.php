@@ -21,6 +21,7 @@ return new class extends Migration
             $table->enum('groupe_sanguin', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']);
             $table->float('poids');
             $table->string('telephone')->unique();
+            $table->text('description_maladie')->nullable();
             $table->timestamps();
         });
     }
