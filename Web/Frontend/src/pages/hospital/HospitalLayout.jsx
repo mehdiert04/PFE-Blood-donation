@@ -21,28 +21,28 @@ const HospitalLayout = () => {
 
                 <nav className={styles.nav}>
                     <NavLink
-                        to="/hospital/dashboard"
+                        to="/hopital/dashboard"
                         className={({ isActive }) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
                     >
                         <LayoutDashboard size={20} />
                         <span>Dashboard</span>
                     </NavLink>
                     <NavLink
-                        to="/hospital/donor-requests"
+                        to="/hopital/donor-requests"
                         className={({ isActive }) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
                     >
                         <Droplet size={20} />
                         <span>Offres de Dons</span>
                     </NavLink>
                     <NavLink
-                        to="/hospital/appointments"
+                        to="/hopital/appointments"
                         className={({ isActive }) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
                     >
                         <Clock size={20} />
                         <span>Rendez-vous</span>
                     </NavLink>
                     <NavLink
-                        to="/hospital/profile"
+                        to="/hopital/profile"
                         className={({ isActive }) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
                     >
                         <User size={20} />

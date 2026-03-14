@@ -39,6 +39,8 @@ const LoginForm = () => {
                     navigate('/receveur/dashboard');
                 } else if (user.role === 'donneur') {
                     navigate('/donneur/dashboard');
+                } else if (user.role === 'hopital') {
+                    navigate('/hopital/dashboard');
                 } else {
                     navigate('/dashboard');
                 }

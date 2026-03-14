@@ -102,7 +102,7 @@ const routes = [
         element: <ProtectedRoute allowedRoles={['hopital']} />,
         children: [
           {
-            path: 'hospital',
+            path: 'hopital',
             element: <HospitalLayout />,
             children: [
               { path: 'dashboard', element: <HospitalDashboard /> },
