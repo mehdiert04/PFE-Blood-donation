@@ -19,6 +19,7 @@ import DonneurDashboard from './pages/donneur/Dashboard';
 import DonneurAppointments from './pages/donneur/Appointments';
 import DonneurHistory from './pages/donneur/History';
 import DonneurProfile from './pages/donneur/Profile';
+import DonneurBloodDemands from './pages/donneur/BloodDemands';
 import DonneurLayout from './pages/donneur/DonneurLayout';
 import Campaigns from './pages/public/Campaigns';
 import BloodRequests from './pages/public/BloodRequests';
@@ -66,6 +67,7 @@ const routes = [
             element: <DonneurLayout />,
             children: [
               { path: 'dashboard', element: <DonneurDashboard /> },
+              { path: 'demands', element: <DonneurBloodDemands /> },
               { path: 'appointments', element: <DonneurAppointments /> },
               { path: 'history', element: <DonneurHistory /> },
               { path: 'profile', element: <DonneurProfile /> },

@@ -23,3 +23,11 @@ export const getDonneurProfile = async () => {
 export const updateDonneurProfile = async (payload) => {
     return axiosClient.put("/donneur/profile", payload);
 };
+
+export const getAvailableDemands = async () => {
+    return axiosClient.get("/donneur/available-demands");
+};
+
+export const helpDemand = async (demandId) => {
+    return axiosClient.post(`/donneur/help/${demandId}`);
+};

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, NavLink, Link } from 'react-router-dom';
-import { LayoutDashboard, Calendar, History, User, LogOut } from 'lucide-react';
+import { LayoutDashboard, Calendar, History, User, LogOut, Droplet } from 'lucide-react';
 import styles from './DonneurLayout.module.css';
 
 const DonneurLayout = () => {
@@ -28,11 +28,18 @@ const DonneurLayout = () => {
                         <span>Dashboard</span>
                     </NavLink>
                     <NavLink
+                        to="/donneur/demands"
+                        className={({ isActive }) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
+                    >
+                        <Droplet size={20} />
+                        <span>Demandes de Sang</span>
+                    </NavLink>
+                    <NavLink
                         to="/donneur/appointments"
                         className={({ isActive }) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
                     >
                         <Calendar size={20} />
-                        <span>Rendez-vous</span>
+                        <span>Mes Rendez-vous</span>
                     </NavLink>
                     <NavLink
                         to="/donneur/history"

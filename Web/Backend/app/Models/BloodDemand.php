@@ -24,4 +24,9 @@ class BloodDemand extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function responses()
+    {
+        return $this->hasMany(DemandResponse::class, 'blood_demand_id');
+    }
 }

@@ -42,8 +42,7 @@ const Campaigns = () => {
         }
 
         if (user.role === 'donneur') {
-            // Redirect to appointment booking page, maybe pass some state if needed
-            navigate('/donneur/appointments', { state: { campaignId: campaign.id, hospitalId: campaign.organizer_id } });
+            alert("Merci de votre intérêt ! L'organisateur de la campagne vous contactera prochainement pour confirmer votre participation et fixer un créneau.");
             return;
         }
 

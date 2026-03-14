@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\StatistiquesController;
 use App\Http\Controllers\Api\DonationHistoryController;
 use App\Http\Controllers\Api\RendezVousController;
+use App\Http\Controllers\Api\Donneur\DemandResponseController;
 
 Route::post('/register/donneur', [AuthController::class, 'registerDonneur']);
 Route::post('/register/receveur', [AuthController::class, 'registerReceveur']);
@@ -52,7 +53,11 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/donations', [DonationHistoryController::class, 'index']);
         Route::get('/appointments/next', [RendezVousController::class, 'next']);
         Route::get('/appointments', [RendezVousController::class, 'index']);
-        Route::post('/appointments', [RendezVousController::class, 'store']);
+        // Route::post('/appointments', [RendezVousController::class, 'store']); // Removed: Donor doesn't make RDV anymore
+        
+        // New: Demand responses
+        Route::get('/available-demands', [DemandResponseController::class, 'availableDemands']);
+        Route::post('/help/{demandId}', [DemandResponseController::class, 'help']);
     });
 
     // Receveur Module
