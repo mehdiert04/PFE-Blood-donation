@@ -29,6 +29,7 @@ class BloodDemandController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'blood_type' => 'required|in:A+,A-,B+,B-,AB+,AB-,O+,O-',
+            'hopital_id' => 'required|exists:users,id',
             'hospital_name' => 'required|string|max:255',
             'city' => 'required|string|max:255',
             'description' => 'nullable|string',

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('donneur_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('blood_demand_id')->constrained('blood_demands')->onDelete('cascade');
-            $table->enum('status', ['pending', 'contacted', 'completed', 'cancelled'])->default('pending');
+            $table->enum('status', ['pending', 'accepted', 'contacted', 'completed', 'cancelled'])->default('pending');
             $table->timestamps();
         });
     }

@@ -17,12 +17,18 @@ class BloodDemand extends Model
         'hospital_name',
         'city',
         'description',
-        'status'
+        'status',
+        'hopital_id'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function hospital()
+    {
+        return $this->belongsTo(User::class, 'hopital_id');
     }
 
     public function responses()

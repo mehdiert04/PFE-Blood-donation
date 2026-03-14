@@ -61,7 +61,9 @@ class DatabaseSeeder extends Seeder
             'nom' => 'Receveur',
             'prenom' => 'User',
             'telephone' => '0600000002',
-            'groupe_sanguin_recherche' => 'O+'
+            'date_naissance' => '1990-01-01',
+            'sexe' => 'Homme',
+            'groupe_sanguin' => 'O+'
         ]);
 
         $hopital = User::updateOrCreate(

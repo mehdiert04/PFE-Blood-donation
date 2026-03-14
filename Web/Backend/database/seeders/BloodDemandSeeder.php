@@ -14,8 +14,9 @@ class BloodDemandSeeder extends Seeder
     public function run(): void
     {
         $receveur = User::where('email', 'receveur@example.com')->first();
+        $hopital = User::where('email', 'hopital@example.com')->first();
 
-        if (!$receveur) {
+        if (!$receveur || !$hopital) {
             return;
         }
 
@@ -27,6 +28,7 @@ class BloodDemandSeeder extends Seeder
                 'city' => 'Marrakech',
                 'description' => 'Urgent need for surgery.',
                 'status' => 'pending',
+                'hopital_id' => $hopital->id,
                 'created_at' => now()->subDays(2),
                 'updated_at' => now()->subDays(2),
             ],
@@ -83,10 +85,16 @@ class BloodDemandSeeder extends Seeder
         ];
 
         foreach ($demands as $demand) {
-            BloodDemand::updateOrCreate(
-                ['description' => $demand['description'], 'user_id' => $demand['user_id']],
-                $demand
-            );
+            $demand['hopital_id'] = $hopital->id;
+            try {
+                BloodDemand::updateOrCreate(
+                    ['description' => $demand['description'], 'user_id' => $demand['user_id']],
+                    $demand
+                );
+            } catch (\Exception $e) {
+                echo "Error seeding demand: " . $e->getMessage() . "\n";
+                throw $e;
+            }
         }
     }
 }

@@ -26,6 +26,11 @@ import BloodRequests from './pages/public/BloodRequests';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Navbar from './components/common/Navbar';
 
+// Hospital Components
+import HospitalLayout from './pages/hospital/HospitalLayout';
+import DonorRequests from './pages/hospital/DonorRequests';
+import HospitalDashboard from './pages/hospital/Dashboard';
+
 // Layout wrapper if needed later (e.g., for header/footer on other pages)
 const MainLayout = () => {
   return (
@@ -89,6 +94,22 @@ const routes = [
               { path: 'demands/:id', element: <BloodDemandDetails /> },
               { path: 'profile', element: <ReceveurProfile /> },
               { path: '', element: <Navigate to="dashboard" replace /> }
+            ]
+          }
+        ]
+      },
+      {
+        element: <ProtectedRoute allowedRoles={['hopital']} />,
+        children: [
+          {
+            path: 'hospital',
+            element: <HospitalLayout />,
+            children: [
+              { path: 'dashboard', element: <HospitalDashboard /> },
+              { path: 'donor-requests', element: <DonorRequests /> },
+              { path: 'appointments', element: <div>Hospital Appointments (Coming Soon)</div> },
+              { path: 'profile', element: <div>Hospital Profile (Coming Soon)</div> },
+              { path: '', element: <Navigate to="donor-requests" replace /> }
             ]
           }
         ]

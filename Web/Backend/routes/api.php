@@ -17,6 +17,7 @@ use App\Http\Controllers\Api\StatistiquesController;
 use App\Http\Controllers\Api\DonationHistoryController;
 use App\Http\Controllers\Api\RendezVousController;
 use App\Http\Controllers\Api\Donneur\DemandResponseController;
+use App\Http\Controllers\Api\Hopital\HospitalDemandController;
 
 Route::post('/register/donneur', [AuthController::class, 'registerDonneur']);
 Route::post('/register/receveur', [AuthController::class, 'registerReceveur']);
@@ -66,5 +67,11 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::apiResource('demands', BloodDemandController::class)->only(['index', 'store', 'show', 'update']);
         Route::get('/profile', [ReceveurProfileController::class, 'show']);
         Route::put('/profile', [ReceveurProfileController::class, 'update']);
+    });
+
+    // Hospital Module
+    Route::prefix('hospital')->middleware('hopital')->group(function () {
+        Route::get('/demand-responses', [HospitalDemandController::class, 'index']);
+        Route::post('/demand-responses/{id}/approve', [HospitalDemandController::class, 'approve']);
     });
 });
