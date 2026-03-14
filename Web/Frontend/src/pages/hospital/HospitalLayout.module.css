@@ -89,7 +89,7 @@
 }
 
 .logoutBtn:hover {
-    background: #ffebee;
+    background: rgba(229, 57, 53, 0.1);
 }
 
 .mainContent {
