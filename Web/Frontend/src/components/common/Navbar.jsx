@@ -93,13 +93,13 @@ const Navbar = () => {
                                 {isUserMenuOpen && (
                                     <div className={styles.userDropdown}>
                                         <Link
-                                            to={user.role === 'receveur' ? '/receveur/dashboard' : (user.role === 'donneur' ? '/donneur/dashboard' : '/dashboard')}
+                                            to={user.role === 'receveur' ? '/receveur/dashboard' : (user.role === 'donneur' ? '/donneur/dashboard' : (user.role === 'hopital' ? '/hopital/dashboard' : '/dashboard'))}
                                             onClick={() => setIsUserMenuOpen(false)}
                                         >
                                             <UserIcon size={16} /> Dashboard
                                         </Link>
                                         <Link
-                                            to={user.role === 'receveur' ? '/receveur/profile' : (user.role === 'donneur' ? '/donneur/profile' : '/profile')}
+                                            to={user.role === 'receveur' ? '/receveur/profile' : (user.role === 'donneur' ? '/donneur/profile' : (user.role === 'hopital' ? '/hopital/profile' : '/profile'))}
                                             onClick={() => setIsUserMenuOpen(false)}
                                         >
                                             <UserIcon size={16} /> Mon Profil
